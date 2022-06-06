@@ -15,6 +15,7 @@ import useValidateDate from 'hooks/useValidateDate'
 export default function EditPublish() {
   const ObtainID = useRouter()
   const ID = ObtainID.query.id
+  console.log(ID)
   const [publishID, setPublishID] = useState([])
   const [save, setSave] = useState(false)
   useEffect(() => {
