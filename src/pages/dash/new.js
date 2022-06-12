@@ -1,4 +1,7 @@
 import { useRouter } from 'next/router'
+import { useState, useRef } from 'react'
+import useValidateDate from 'hooks/useValidateDate'
+import styles from 'styles/styles.module.css'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
 import Data from 'components/AdmindPanel/Data'
@@ -6,7 +9,9 @@ import InputTitle from 'components/AdmindPanel/Input/InputTitle'
 import AdminNavbar from 'components/AdmindPanel/Navbar'
 import AdminSidebar from 'components/AdmindPanel/Navbar/SideBar'
 import Arrow from 'components/Icons/Arrow'
+import Notification from 'components/AdmindPanel/Notification'
 import TextArea from 'components/AdmindPanel/Input/TextArea'
+import EmbedMedia from 'components/AdmindPanel/EmbedMedia'
 
 const DynamicTextEditor = dynamic(
   () => import('components/AdmindPanel/TextEditor'),
@@ -16,22 +21,48 @@ const DynamicTextEditor = dynamic(
 )
 
 export default function EditPublish() {
+  const [save, setSave] = useState(false)
   const ObtainID = useRouter()
+  const refElement = useRef()
   const back = () => ObtainID.back()
   const send = (e) => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
-    axios
-      .post('http://localhost:4000/api/v1/news', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-      .then((request) => {
-        ObtainID.push(`/dash/${request.data.id}`)
-      })
-      .catch((err) => console.log(err))
+    console.log(data)
+    const { publicar, eliminar } = data
+    const isValidDates = useValidateDate(publicar, eliminar)
+    if (
+      publicar === undefined ||
+      eliminar === undefined ||
+      isValidDates === true
+    ) {
+      refElement.current.setAttribute('disabled', true)
+      refElement.current.classList.add(styles.disabledButton)
+      refElement.current.innerHTML = `<div class=${styles.loaderSave}></div>`
+      axios
+        .post('http://localhost:4000/api/v1/news', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then((res) => {
+          refElement.current.removeAttribute('disabled')
+          refElement.current.classList.remove(styles.disabledButton)
+          refElement.current.innerHTML = 'Guardar'
+          setSave(true)
+          closeNotification()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
+  const closeNotification = () => {
+    const time = setTimeout(() => setSave(false), 3500)
+    return () => clearTimeout(time)
+  }
+  const notification = save ? <Notification message="Guardado" /> : null
+
   return (
     <>
       <div className="grid grid-cols-4 lg:grid-cols-6">
@@ -50,6 +81,13 @@ export default function EditPublish() {
                   <Arrow fill="#fff" />
                 </div>
                 <InputTitle />
+                <button
+                  type="submit"
+                  className={styles.buttonSave}
+                  ref={refElement}
+                >
+                  Guardar
+                </button>
               </div>
               <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
                 <div className="col-span-3 p-4 bg-zinc-800 rounded-lg">
@@ -58,18 +96,18 @@ export default function EditPublish() {
                     <TextArea name={'description'} />
                   </div>
                   <DynamicTextEditor />
+                  <EmbedMedia />
                 </div>
                 <div className="col-span-2">
                   <Data act="new" dataNews={{}} />
                 </div>
               </div>
-              <button
-                type="submit"
-                className="bg-zinc-800 text-white rounded-lg p-2 mt-5"
-              >
-                send
-              </button>
             </form>
+            <div
+              className={`${styles.notificationClose} fixed bottom-5 right-5 `}
+            >
+              {notification}
+            </div>
           </main>
         </div>
       </div>

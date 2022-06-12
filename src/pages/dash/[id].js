@@ -109,7 +109,7 @@ export default function EditPublish() {
               <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
                 <Content data={publishArray} />
                 <div className="col-span-2">
-                  <Information idNews={ID} />
+                  <Information idNews={publishArray} />
                   <Data dataNews={publishArray} />
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import useFormatDate from 'hooks/useFormatDate'
 import Link from 'next/link'
 
 export default function AdminNews({ data }) {
@@ -6,6 +7,8 @@ export default function AdminNews({ data }) {
     <>
       <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
         {news.map((publish) => {
+          const dateFormat = useFormatDate(publish.createdAt, 'yyy')
+          console.log(dateFormat)
           return (
             <div
               key={publish.id}
@@ -27,7 +30,7 @@ export default function AdminNews({ data }) {
                   <p className="text-xs">{publish.createdAt}</p>
                   <div className="flex justify-between">
                     <p>{publish.category}</p>
-                    <p>787</p>
+                    <p>Published</p>
                   </div>
                 </a>
               </Link>

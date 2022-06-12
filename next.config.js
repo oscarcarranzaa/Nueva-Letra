@@ -6,5 +6,4 @@ const nextConfig = {
     domains: ['localhost']
   }
 }
-
 module.exports = nextConfig

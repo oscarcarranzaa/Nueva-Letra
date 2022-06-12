@@ -1,40 +1,71 @@
 import ImageData from '../UpdateImage'
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import CategoryData from './CategoryData'
 import Tags from '../Tags'
-import PublishMedia from '../PublishMedia'
-import useFormat from 'hooks/useFormat'
+import styles from 'styles/styles.module.css'
 
+const DynamicAdvanceSettings = dynamic(
+  () => import('components/AdmindPanel/AdvancedSettigs'),
+  { ssr: false }
+)
 export default function Data({ dataNews, act }) {
   const [data, setData] = useState([])
+  const [config, setConfig] = useState(false)
+  const configElemet = config ? styles.slideRight : styles.slideLeft
+  const selectLeft = !config ? styles.slideBorder : ''
+  const selectRight = config ? styles.slideBorder : ''
+  const viewConfig = () => setConfig(true)
+  const hiddeConfig = () => setConfig(false)
   useEffect(() => {
     setData(dataNews)
   }, [dataNews])
+
   const img = data.image || '/'
-  const PathURL = data.title === undefined ? '' : useFormat(data.title)
-  const URL = `http://localhost:3000/${data.category}/${PathURL}_${data.id}`
   return (
     <>
-      <div className="p-4 bg-gray-900 rounded-lg">
-        <PublishMedia url={URL} />
-        <div className="bg-gray-400 w-full">
-          <ImageData img={img} action={act} />
+      <div className="bg-gray-900 rounded-lg overflow-hidden">
+        <div className="flex w-full justify-around">
+          <button
+            type="button"
+            className={`w-full p-2 hover:bg-slate-700 border-2 border-sky-600 ${selectLeft}`}
+            onClick={hiddeConfig}
+          >
+            General
+          </button>
+          <button
+            type="button"
+            className={`w-full p-2 hover:bg-slate-700 border-2 border-sky-600 ${selectRight}`}
+            onClick={viewConfig}
+          >
+            Configuracion
+          </button>
         </div>
-        <div className="mt-10">
-          <CategoryData categoryData={data.category} />
-          <Tags
-            use={'PALABRAS CLAVES'}
-            name="keyword"
-            required={true}
-            dataTags={data.keywords}
-          />
-          <Tags
-            use={'#HASTAGS (OPCIONAL)'}
-            symbol="#"
-            name="hashtag"
-            required={false}
-            dataTags={data.hashtag}
-          />
+        <div className={`${styles.slideContent} ${configElemet} mt-5`}>
+          <div className={styles.slideGeneral}>
+            <div className="bg-gray-400 w-full">
+              <ImageData img={img} action={act} />
+            </div>
+            <div className="mt-10">
+              <CategoryData categoryData={data.category} />
+              <Tags
+                use={'PALABRAS CLAVES'}
+                name="keywords"
+                required={true}
+                dataTags={data.keywords}
+              />
+              <Tags
+                use={'#HASTAGS (OPCIONAL)'}
+                symbol="#"
+                name="hashtag"
+                required={false}
+                dataTags={data.hashtag}
+              />
+            </div>
+          </div>
+          <div className={`mt-5 ${styles.slideConfig}`}>
+            <DynamicAdvanceSettings action={act} />
+          </div>
         </div>
       </div>
     </>

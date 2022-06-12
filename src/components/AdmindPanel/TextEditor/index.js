@@ -34,7 +34,7 @@ export default function TextEditor(content) {
             ['fontColor'],
             ['outdent', 'indent'],
             ['align', 'horizontalRule', 'list'],
-            ['link', 'image'],
+            ['link', 'image', 'video'],
             ['fullScreen', 'showBlocks', 'codeView']
           ]
         }}

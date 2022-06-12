@@ -3,7 +3,7 @@ import { isValid } from 'date-fns'
 import DateInput from './DateInput'
 import DeleteNews from './DeleteNews'
 
-export default function AdvanceSettings() {
+export default function AdvanceSettings({ action }) {
   const [publish, setPublish] = useState('')
   const [del, setDel] = useState('')
   const [validDates, setValidDates] = useState('')
@@ -28,6 +28,7 @@ export default function AdvanceSettings() {
     const empty = value === null || value === '' ? '' : value
     setDel(empty)
   }
+  const delAction = action === 'new' ? '' : <DeleteNews />
   return (
     <>
       <DateInput
@@ -40,7 +41,7 @@ export default function AdvanceSettings() {
         dateValidation={handleDel}
         valid={validDates}
       />
-      <DeleteNews />
+      {delAction}
     </>
   )
 }

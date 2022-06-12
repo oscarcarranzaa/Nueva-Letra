@@ -1,3 +1,4 @@
+import axios from 'axios'
 import AdminNavbar from 'components/AdmindPanel/Navbar'
 import AdminSidebar from 'components/AdmindPanel/Navbar/SideBar'
 import AdminNews from 'components/AdmindPanel/News'
@@ -7,11 +8,14 @@ export default function Dash() {
   const [newsData, setNewsData] = useState([])
   useEffect(() => {
     document.title = 'CDM - Dashboard'
-    fetch('http://localhost:4000/api/v1/news?limit=4').then((res) => {
-      res.json().then((data) => {
-        setNewsData(data)
+    axios
+      .get('http://localhost:4000/api/v1/news?limit=4')
+      .then((res) => {
+        setNewsData(res.data)
       })
-    })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
   return (
     <>

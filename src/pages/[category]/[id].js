@@ -6,6 +6,7 @@ import SocialMedia from 'components/SocialMedia'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import styles from 'styles/styles.module.css'
 
 export default function K({ data }) {
   const News = data[0]
@@ -14,6 +15,9 @@ export default function K({ data }) {
   }, [News])
   const text = () => {
     return { __html: News.text }
+  }
+  const embed = () => {
+    return { __html: News.embed }
   }
   return (
     <>
@@ -45,8 +49,11 @@ export default function K({ data }) {
             <div className="mt-5 flex flex-col">
               <span dangerouslySetInnerHTML={text()}></span>
             </div>
+            <div
+              className={styles.responsiveIframe}
+              dangerouslySetInnerHTML={embed()}
+            ></div>
           </div>
-
           <div>
             <Recomended />
           </div>

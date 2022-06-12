@@ -1,6 +1,5 @@
 import useFormatDate from 'hooks/useFormatDate'
 import { useState, useEffect } from 'react'
-import { format } from 'date-fns'
 import CheckSVG from 'components/icons/Check'
 import styles from 'styles/styles.module.css'
 import WarnSVG from 'components/Icons/Warn'
@@ -28,17 +27,13 @@ export default function DateInput({ action, dateValidation, valid }) {
   }, [date, time])
 
   useEffect(() => {
-    setDataConvert(useFormatDate(dateComplete, utcDate))
+    setDataConvert(useFormatDate(dateComplete, utcDate, 'yyy'))
   }, [dateComplete, utcDate])
 
   useEffect(() => {
     const dateActive = data ? null : dateConvert
     dateValidation(dateActive)
   }, [dateConvert, data])
-
-  const dateFormat = dateConvert
-    ? format(new Date(dateConvert), 'dd/MM/yyyy h:mm aaa')
-    : 'No válida'
 
   const handleClickData = () => setData(!data)
   const dataDisabled = data ? styles.disabledDate : ''
@@ -47,7 +42,7 @@ export default function DateInput({ action, dateValidation, valid }) {
   const warnValid = valid === true ? 'hidden' : ' '
   return (
     <>
-      <div className="bg-slate-900 rounded-md mt-1 ">
+      <div className="bg-zinc-900 rounded-md mt-1 ">
         <div className="w-10/12 m-auto">
           <div className="flex mb-1 justify-between pt-2 pb-2">
             <h4 className="text-lg font-medium mr-5">Fecha de {action}</h4>
@@ -79,7 +74,7 @@ export default function DateInput({ action, dateValidation, valid }) {
               </div>
               <div>
                 <p className="text-slate-300">Fecha ({isUTC})</p>
-                <span>{dateFormat}</span>
+                <span>{dateConvert}</span>
               </div>
             </div>
             <div className="h-6">
