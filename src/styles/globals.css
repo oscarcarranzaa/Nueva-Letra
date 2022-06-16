@@ -7,7 +7,6 @@
   box-sizing: border-box;
 }
 button, select, input{
-  border: none;
   outline: none;
 }
 textarea{

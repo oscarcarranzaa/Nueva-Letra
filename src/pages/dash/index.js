@@ -1,22 +1,35 @@
 import axios from 'axios'
 import AdminNavbar from 'components/AdmindPanel/Navbar'
 import AdminSidebar from 'components/AdmindPanel/Navbar/SideBar'
-import AdminNews from 'components/AdmindPanel/News'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
+const DynamicPublishItems = dynamic(
+  () => import('components/AdmindPanel/News'),
+  {
+    ssr: false
+  }
+)
+
 export default function Dash() {
-  const [newsData, setNewsData] = useState([])
+  const [feedPublish, setFeedPublish] = useState()
+  const [querySuccess, setQuerySuccess] = useState(false)
+  console.log(feedPublish)
   useEffect(() => {
     document.title = 'CDM - Dashboard'
     axios
       .get('http://localhost:4000/api/v1/news?limit=4')
       .then((res) => {
-        setNewsData(res.data)
+        setFeedPublish(res.data)
+        setQuerySuccess(true)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
+  const publishItems = querySuccess ? (
+    <DynamicPublishItems data={feedPublish} />
+  ) : null
   return (
     <>
       <div className="grid grid-cols-4 lg:grid-cols-6">
@@ -31,7 +44,7 @@ export default function Dash() {
                 Publicaciones Recientes
               </h4>
             </div>
-            <AdminNews data={newsData} />
+            {publishItems}
           </main>
         </div>
       </div>
