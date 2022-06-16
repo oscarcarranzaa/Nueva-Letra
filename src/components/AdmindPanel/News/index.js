@@ -1,6 +1,4 @@
 import useFormatDate from 'hooks/useFormatDate'
-import { format, isValid, formatDistance, differenceInDays } from 'date-fns'
-import { es } from 'date-fns/locale'
 
 import Link from 'next/link'
 import useFormat from 'hooks/useFormat'
@@ -13,24 +11,7 @@ export default function News({ data }) {
     <>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
         {news.map((publish) => {
-          const useFormatTime = useFormatDate(publish.createdAt, false)
-          const differenceDate = differenceInDays(
-            new Date(),
-            new Date(useFormatTime)
-          )
-          const formatDistanceDate = isValid(new Date(useFormatTime))
-            ? formatDistance(
-                new Date(useFormatTime),
-                new Date(),
-                { locale: es },
-                { addSuffix: true }
-              )
-            : '---'
-          const formatDate = isValid(new Date(useFormatTime))
-            ? format(new Date(useFormatTime), 'dd/MM/yyyy')
-            : '---'
-          const displayDate =
-            differenceDate > 6 ? formatDate : formatDistanceDate
+          const formatTime = useFormatDate(publish.createdAt, false, '', true)
           const PathURL =
             publish.title === undefined ? '' : useFormat(publish.title)
           const URL = `http://localhost:3000/${publish.category}/${PathURL}_${publish.id}`
@@ -54,9 +35,7 @@ export default function News({ data }) {
                   </figure>
 
                   <h5 className="line-clamp-2">{publish.title}</h5>
-                  <p className="text-xs text-slate-300">
-                    {displayDate + publish.id}
-                  </p>
+                  <p className="text-xs text-slate-300">{formatTime}</p>
                   <div className="flex justify-between">
                     <p className="text-sm text-slate-300">{publish.category}</p>
                     <p className="text-sm text-slate-300">Published</p>

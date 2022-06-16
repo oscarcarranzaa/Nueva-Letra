@@ -1,8 +1,8 @@
-import { isValid } from 'date-fns'
+import dayjs from 'dayjs'
 
 export default function useValidateDate(publicar, eliminar) {
-  const publishDate = isValid(new Date(publicar))
-  const delDate = isValid(new Date(eliminar))
+  const publishDate = dayjs(new Date(publicar)).isValid()
+  const delDate = dayjs(new Date(eliminar)).isValid()
 
   if (publishDate === true && delDate === true) {
     console.log(publishDate, delDate)

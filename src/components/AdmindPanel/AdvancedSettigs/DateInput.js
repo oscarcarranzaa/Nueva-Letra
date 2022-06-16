@@ -27,7 +27,7 @@ export default function DateInput({ action, dateValidation, valid }) {
   }, [date, time])
 
   useEffect(() => {
-    setDataConvert(useFormatDate(dateComplete, utcDate, 'yyy'))
+    setDataConvert(useFormatDate(dateComplete, utcDate, ''))
   }, [dateComplete, utcDate])
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export default function DateInput({ action, dateValidation, valid }) {
   const isUTC = utcDate ? 'Local' : 'Estándar'
   const timeUTC = utcDate ? 'UTC' : 'Local'
   const warnValid = valid === true ? 'hidden' : ' '
+
   return (
     <>
       <div className="bg-zinc-900 rounded-md mt-1 ">

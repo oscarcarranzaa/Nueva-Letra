@@ -1,16 +1,16 @@
 import PublishMedia from '../PublishMedia'
 import useFormat from 'hooks/useFormat'
 import useFormatDate from 'hooks/useFormatDate'
-import { format, isValid } from 'date-fns'
 
 export default function Information({ idNews }) {
   const PathURL = idNews.title === undefined ? '' : useFormat(idNews.title)
   const URL = `http://localhost:3000/${idNews.category}/${PathURL}_${idNews.id}`
   const createDate = idNews.createdAt
-  const dateFormat = useFormatDate(createDate, false)
-  const created = isValid(new Date(dateFormat))
-    ? format(new Date(dateFormat), 'dd/MM/yyyy HH:mm')
-    : '---'
+  const publishCreateDate = useFormatDate(
+    createDate,
+    false,
+    'DD/MM/YYYY h:mm a'
+  )
   return (
     <>
       <div className="w-full bg-zinc-800 rounded mb-3 p-5">
@@ -31,7 +31,7 @@ export default function Information({ idNews }) {
           </div>
           <div>
             <h3>Creado</h3>
-            <p className=" pt-1 mt-2">{created}</p>
+            <p className=" pt-1 mt-2">{publishCreateDate}</p>
           </div>
         </div>
       </div>

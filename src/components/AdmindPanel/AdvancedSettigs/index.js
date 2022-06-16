@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { isValid } from 'date-fns'
+import dayjs from 'dayjs'
 import DateInput from './DateInput'
 import DeleteNews from './DeleteNews'
 
@@ -9,8 +9,8 @@ export default function AdvanceSettings({ action }) {
   const [validDates, setValidDates] = useState('')
 
   useEffect(() => {
-    const publishDate = isValid(new Date(publish))
-    const delDate = isValid(new Date(del))
+    const publishDate = dayjs(new Date(publish)).isValid()
+    const delDate = dayjs(new Date(del)).isValid()
     if (publishDate === true && delDate === true) {
       const datePublish = new Date(publish)
       const dateDel = new Date(del)

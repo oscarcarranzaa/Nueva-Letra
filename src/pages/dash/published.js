@@ -29,7 +29,7 @@ export default function published() {
     if (routerFeed.isReady) {
       const defaultQuery = query || 1
       axios
-        .get(`http://localhost:4000/api/v1/news?limit=4&p=${defaultQuery}`)
+        .get(`http://localhost:4000/api/v1/news?limit=12&p=${defaultQuery}`)
         .then((res) => {
           setFeedPublish(res.data)
           setQuerySuccess(true)
