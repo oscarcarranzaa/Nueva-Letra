@@ -2,7 +2,6 @@ export default function usePagination(totalPaginates, thisPage, size) {
   const defaultPaginates = 7 || size
   const pages =
     totalPaginates <= defaultPaginates ? totalPaginates : defaultPaginates
-  console.log(pages, totalPaginates)
   const sidePaginate = Math.floor(pages / 2) + 1
   const pages2 = Math.floor(pages / 2)
 

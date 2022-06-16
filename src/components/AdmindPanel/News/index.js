@@ -54,7 +54,9 @@ export default function News({ data }) {
                   </figure>
 
                   <h5 className="line-clamp-2">{publish.title}</h5>
-                  <p className="text-xs text-slate-300">{displayDate}</p>
+                  <p className="text-xs text-slate-300">
+                    {displayDate + publish.id}
+                  </p>
                   <div className="flex justify-between">
                     <p className="text-sm text-slate-300">{publish.category}</p>
                     <p className="text-sm text-slate-300">Published</p>
