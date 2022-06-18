@@ -3,14 +3,13 @@ import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 import Data from 'components/AdmindPanel/Data'
 import InputTitle from 'components/AdmindPanel/Input/InputTitle'
-import AdminNavbar from 'components/AdmindPanel/Navbar'
-import AdminSidebar from 'components/AdmindPanel/Navbar/SideBar'
 import Arrow from 'components/Icons/Arrow'
 import styles from 'styles/styles.module.css'
 import Notification from 'components/AdmindPanel/Notification'
 import Information from 'components/AdmindPanel/Information'
 import Content from 'components/AdmindPanel/Content'
 import useValidateDate from 'hooks/useValidateDate'
+import Layout from 'components/AdmindPanel/Layout'
 
 export default function EditPublish() {
   const ObtainID = useRouter()
@@ -76,52 +75,42 @@ export default function EditPublish() {
 
   return (
     <>
-      <div className="grid grid-cols-4 lg:grid-cols-6">
-        <div className="bg-zinc-800 pb-40">
-          <AdminSidebar />
-        </div>
-        <div className="col-span-3 lg:col-span-5">
-          <AdminNavbar />
-          <main className="w-full mt-10 p-2 bg-zinc-700 pt-10 text-white">
-            <form onSubmit={send}>
-              <button
-                type="submit"
-                className="hidden"
-                disabled
-                aria-hidden="true"
-              />
-              <div className="flex items-center bg-zinc-800 rounded p-1">
-                <div
-                  className="mr-1 rounded-full p-2 hover:cursor-pointer hover:bg-slate-600"
-                  onClick={back}
-                >
-                  <Arrow fill="#fff" />
-                </div>
-                <InputTitle Value={publishArray.title} />
-                <button
-                  type="submit"
-                  className={styles.buttonSave}
-                  ref={refElement}
-                >
-                  Guardar
-                </button>
-              </div>
-              <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
-                <Content data={publishArray} />
-                <div className="col-span-2">
-                  <Information idNews={publishArray} />
-                  <Data dataNews={publishArray} />
-                </div>
-              </div>
-            </form>
+      <Layout>
+        <form onSubmit={send}>
+          <button
+            type="submit"
+            className="hidden"
+            disabled
+            aria-hidden="true"
+          />
+          <div className="flex items-center bg-zinc-800 rounded p-1">
             <div
-              className={`${styles.notificationClose} fixed bottom-5 right-5 `}
+              className="mr-1 rounded-full p-2 hover:cursor-pointer hover:bg-slate-600"
+              onClick={back}
             >
-              {notification}
+              <Arrow fill="#fff" />
             </div>
-          </main>
+            <InputTitle Value={publishArray.title} />
+            <button
+              type="submit"
+              className={styles.buttonSave}
+              ref={refElement}
+            >
+              Guardar
+            </button>
+          </div>
+          <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
+            <Content data={publishArray} />
+            <div className="col-span-2">
+              <Information idNews={publishArray} />
+              <Data dataNews={publishArray} />
+            </div>
+          </div>
+        </form>
+        <div className={`${styles.notificationClose} fixed bottom-5 right-5 `}>
+          {notification}
         </div>
-      </div>
+      </Layout>
     </>
   )
 }

@@ -1,11 +1,5 @@
-import { useRouter } from 'next/router'
+import Layout from 'components/AdmindPanel/Layout'
 
-export default function Search() {
-  const route = useRouter()
-  const query = route.query.q
-  return (
-    <>
-      <h1>{query}</h1>
-    </>
-  )
+export default function published() {
+  return <Layout></Layout>
 }

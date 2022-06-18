@@ -1,0 +1,11 @@
+.navbarNick{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+@media screen and (max-width: 768px) {
+  .navbarNick > p{
+    display: none;
+  }
+} 

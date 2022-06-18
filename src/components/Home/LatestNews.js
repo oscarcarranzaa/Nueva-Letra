@@ -1,3 +1,4 @@
+import axios from 'axios'
 import useFormat from 'hooks/useFormat'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,9 +7,9 @@ import { useEffect, useState } from 'react'
 export default function lastNews() {
   const [notice, setNotice] = useState([])
   useEffect(() => {
-    fetch('http://localhost:4000/api/v1/news?limit=6').then((res) =>
-      res.json().then((data) => setNotice(data))
-    )
+    axios.get('http://localhost:4000/api/v1/news?limit=6').then((res) => {
+      setNotice(res.data.response.metadata)
+    })
   }, [])
   return (
     <>
