@@ -32,6 +32,9 @@ export default function Dash() {
   return (
     <>
       <Layout>
+        <div>
+          <h1 className="text-3xl text-slate-100">Bienvenido, Oscar Andres</h1>
+        </div>
         <div className="border-b border-white mb-3 mt-10 flex items-center">
           <h4 className="font-base text-slate-300 hover:text-white text-xl">
             Publicaciones Recientes

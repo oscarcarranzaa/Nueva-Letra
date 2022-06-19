@@ -1,27 +1,46 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import axios from 'axios'
-import Data from 'components/AdmindPanel/Data'
-import InputTitle from 'components/AdmindPanel/Input/InputTitle'
 import Arrow from 'components/Icons/Arrow'
 import styles from 'styles/styles.module.css'
 import Notification from 'components/AdmindPanel/Notification'
-import Information from 'components/AdmindPanel/Information'
-import Content from 'components/AdmindPanel/Content'
 import useValidateDate from 'hooks/useValidateDate'
 import Layout from 'components/AdmindPanel/Layout'
 
+const DynamicTitle = dynamic(
+  () => import('components/AdmindPanel/Input/InputTitle'),
+  {
+    ssr: false
+  }
+)
+const DynamicContent = dynamic(() => import('components/AdmindPanel/Content'), {
+  ssr: false
+})
+const DynamicInformation = dynamic(
+  () => import('components/AdmindPanel/Information'),
+  { ssr: false }
+)
+const DynamicData = dynamic(() => import('components/AdmindPanel/Data'), {
+  ssr: false
+})
 export default function EditPublish() {
   const ObtainID = useRouter()
   const ID = ObtainID.query.id
-  console.log(ID)
-  const [publishID, setPublishID] = useState([])
+  const [publishData, setPublishData] = useState([])
+  const [querySucces, setQuerySucces] = useState(false)
   const [save, setSave] = useState(false)
   useEffect(() => {
-    if (ObtainID.asPath !== ObtainID.route) {
+    if (ObtainID.isReady) {
       fetch(`http://localhost:4000/api/v1/news/${ID}`).then((res) => {
         res.json().then((data) => {
-          setPublishID(data)
+          if (data.id === undefined) {
+            ObtainID.push('/dash/404')
+          } else {
+            setPublishData(data)
+            console.log(data.id)
+            setQuerySucces(true)
+          }
         })
         const status = res.status
         if (status === 404 || status === 500) {
@@ -31,8 +50,6 @@ export default function EditPublish() {
     }
   }, [ID, save])
 
-  const publishArray = publishID[0] || []
-  const back = () => ObtainID.back()
   const refElement = useRef()
   const send = (e) => {
     e.preventDefault()
@@ -65,6 +82,14 @@ export default function EditPublish() {
         })
     }
   }
+  const inputTitle = querySucces ? (
+    <DynamicTitle Value={publishData.title} />
+  ) : null
+  const content = querySucces ? <DynamicContent data={publishData} /> : null
+  const Information = querySucces ? (
+    <DynamicInformation idNews={publishData} />
+  ) : null
+  const Data = querySucces ? <DynamicData dataNews={publishData} /> : null
   const closeNotification = () => {
     const time = setTimeout(() => setSave(false), 3500)
     return () => clearTimeout(time)
@@ -86,11 +111,11 @@ export default function EditPublish() {
           <div className="flex items-center bg-zinc-800 rounded p-1">
             <div
               className="mr-1 rounded-full p-2 hover:cursor-pointer hover:bg-slate-600"
-              onClick={back}
+              onClick={() => ObtainID.back()}
             >
               <Arrow fill="#fff" />
             </div>
-            <InputTitle Value={publishArray.title} />
+            {inputTitle}
             <button
               type="submit"
               className={styles.buttonSave}
@@ -100,10 +125,10 @@ export default function EditPublish() {
             </button>
           </div>
           <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
-            <Content data={publishArray} />
+            {content}
             <div className="col-span-2">
-              <Information idNews={publishArray} />
-              <Data dataNews={publishArray} />
+              {Information}
+              {Data}
             </div>
           </div>
         </form>

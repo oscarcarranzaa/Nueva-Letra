@@ -23,6 +23,7 @@
 @media screen and (max-width: 600px) {
   .searchButton{
     display: block;
+    float: right;
   }
   .toggleFormSearch{
     display: none;

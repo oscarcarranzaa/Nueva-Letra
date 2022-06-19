@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import SearchSvg from 'components/Icons/Search'
 import styles from './search.module.css'
@@ -14,7 +14,6 @@ export default function Search() {
       route.push(`/dash/search?q=${searchQuery}`)
     }
   }
-  console.log(searchFull)
   const searchFullContent = searchFull ? styles.searchFullContent : ''
   const showOpen = searchFull ? 'block' : 'hidden'
   const showOpenForm = searchFull ? 'block' : styles.toggleFormSearch
@@ -29,9 +28,9 @@ export default function Search() {
       </button>
       <form
         onSubmit={sendSearch}
-        className={`w-full bg-zinc-900 ${styles.searchForm} ${searchFullContent} ${showOpenForm}`}
+        className={`w-full h-full bg-zinc-900 ${styles.searchForm} ${searchFullContent} ${showOpenForm}`}
       >
-        <div className="inline-block h-10 w-full">
+        <div className=" w-full">
           <div className="flex justify-center w-full">
             <div className="bg-zinc-900 flex items-center">
               <button

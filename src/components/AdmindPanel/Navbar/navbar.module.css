@@ -4,8 +4,66 @@
   align-items: center;
   margin-right: 20px;
 }
+.menuIconsLink{
+  padding: 8px;
+}
+.menuName{
+  margin-left: 8px;
+  font-size: 15px;
+}
+.menuIconsLink{
+  margin-left: 20px;
+}
 @media screen and (max-width: 768px) {
   .navbarNick > p{
     display: none;
   }
+  .menuBarsButton{
+    display: none;
+  }
+  .displayMenu{
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    padding: 0%;
+  }
+  .menuList{
+    display: flex;
+    justify-content: space-between;
+  }
+  .menuList > li {
+    width: 100%;
+    border-radius: 0%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .menuLink{
+    padding: 8px;
+  }
+  .menuIconsLink{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0;
+    padding: 0px 0px;
+  }
+  .borderCenterMenu{
+    border: 2px solid #fff;
+    padding: 5px;
+  }
+  .menuName{
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+  }
+  .noneMovil{
+    display: none;
+  }
 } 
+@media screen and (min-width: 769px) {
+  .navClosed{
+    display: none;
+  }
+}

@@ -6,6 +6,8 @@ import Bars from 'components/Icons/Bars'
 import Spinner from 'components/Icons/Spinner'
 import Image from 'next/image'
 import Search from '../Search'
+import AdminSidebar from './SideBar'
+import Link from 'next/link'
 
 const ProfileDynamic = dynamic(() => import('./AdminSettings'), {
   ssr: false,
@@ -22,24 +24,38 @@ const ProfileDynamic = dynamic(() => import('./AdminSettings'), {
 })
 export default function AdminNavbar() {
   const [profileOpen, setOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState(true)
   const toggleProfile = () => {
     setOpen(!profileOpen)
   }
   const ArrowDown = profileOpen ? 'rotate-180' : ''
-
+  console.log(openMenu)
   return (
     <>
-      <header className="bg-zinc-900 text-white fixed right-0 left-0 z-10 border-b border-zinc-500">
+      <header className="bg-zinc-900 text-white fixed right-0 left-0 z-20 p-2 pb-3 pt-3 border-b border-zinc-500">
         <div className="relative w-full flex items-center justify-between">
-          <div className="flex p-5">
-            <div className="ml-2 mr-8">
-              <Bars color={'#fff'} />
+          <div className="flex items-center">
+            <button
+              type="button"
+              className={`ml-2 mr-5 p-1 ${styles.menuBarsButton}`}
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <Bars color="#fff" />
+            </button>
+            <div className="w-24">
+              <Link href="/dash">
+                <a>
+                  <Image
+                    src="/CDM_logo.png"
+                    width={100}
+                    height={50}
+                    layout="responsive"
+                  />
+                </a>
+              </Link>
             </div>
-            <h1 className="text-white">
-              <b>CDM </b>- panel
-            </h1>
           </div>
-          <div className="w-5/12 flex justify-end">
+          <div className="w-5/12">
             <Search />
           </div>
           <div className="flex justify-end">
@@ -67,6 +83,7 @@ export default function AdminNavbar() {
           </div>
         </div>
       </header>
+      <AdminSidebar open={openMenu} />
     </>
   )
 }
