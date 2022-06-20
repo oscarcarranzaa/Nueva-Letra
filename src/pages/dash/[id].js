@@ -124,9 +124,9 @@ export default function EditPublish() {
               Guardar
             </button>
           </div>
-          <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
+          <div className={styles.monitorDash}>
             {content}
-            <div className="col-span-2">
+            <div className={styles.dataMonitor}>
               {Information}
               {Data}
             </div>

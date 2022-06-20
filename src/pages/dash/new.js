@@ -82,8 +82,10 @@ export default function EditPublish() {
               Guardar
             </button>
           </div>
-          <div className="grid grid-cols-1 mt-5 gap-y-3 gap-x-0 md:grid-cols-5 md:gap-x-3">
-            <div className="col-span-3 p-4 bg-zinc-800 rounded-lg">
+          <div className={styles.monitorDash}>
+            <div
+              className={`${styles.inputMonitor} bg-zinc-800 p-3 rounded-lg mb-5`}
+            >
               <h5 className="mt-3">Descripcion</h5>
               <div className="h-32 border border-sky-600 rounded mb-3">
                 <TextArea name={'description'} />
@@ -91,7 +93,7 @@ export default function EditPublish() {
               <DynamicTextEditor />
               <EmbedMedia />
             </div>
-            <div className="col-span-2">
+            <div className={styles.dataMonitor}>
               <Data act="new" dataNews={{}} />
             </div>
           </div>

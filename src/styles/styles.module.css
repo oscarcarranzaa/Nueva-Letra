@@ -4,6 +4,20 @@
 .disabledButton:hover{
   cursor: not-allowed;
 }
+/* add news and edit news responsive */
+.monitorDash{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  grid-template-columns: 80% 20%;
+  margin-top: 30px;
+}
+.inputMonitor{
+  width: 60%;
+}
+.dataMonitor{
+  width: 40%;
+}
 .buttonSave{
   margin-left: 10px;
   width: 130px;
@@ -51,6 +65,7 @@
 }
 .slideBorder{
   border-bottom: 2px solid #09f !important;
+  background-color: rgb(0, 35, 58);
 }
 .checkDate{
   position: relative;
@@ -168,4 +183,16 @@
     transform: rotate(360deg);
   }
   
+}
+@media screen and (max-width: 768px){
+  .monitorDash{
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+  .inputMonitor {
+    width: 100%;
+  }
+  .dataMonitor {
+    width: 100%;
+  }
 }

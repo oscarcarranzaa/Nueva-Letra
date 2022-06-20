@@ -28,14 +28,14 @@ export default function Data({ dataNews, act }) {
         <div className="flex w-full justify-around">
           <button
             type="button"
-            className={`w-full p-2 hover:bg-slate-700 border-2 border-sky-600 ${selectLeft}`}
+            className={`w-full p-2 hover:bg-slate-700  ${selectLeft}`}
             onClick={hiddeConfig}
           >
             General
           </button>
           <button
             type="button"
-            className={`w-full p-2 hover:bg-slate-700 border-2 border-sky-600 ${selectRight}`}
+            className={`w-full p-2 hover:bg-slate-700  ${selectRight}`}
             onClick={viewConfig}
           >
             Configuracion

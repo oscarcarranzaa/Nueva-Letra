@@ -30,7 +30,7 @@ export default function EmbedMedia({ embedData }) {
   }
   return (
     <>
-      <div className="w-full bg-zinc-700 mt-6 p-3">
+      <div className="w-full mt-6 p-3">
         <div className="flex justify-between items-center">
           <p className="text-lg font-medium">
             Código de inserción

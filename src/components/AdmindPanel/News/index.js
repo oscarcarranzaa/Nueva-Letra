@@ -37,10 +37,10 @@ export default function News({ data }) {
                   <h5 className="line-clamp-2 font-semibold">
                     {publish.title}
                   </h5>
-                  <p className="text-xs text-slate-300">{formatTime}</p>
-                  <div className="flex justify-between">
-                    <p className="text-sm text-slate-300">{publish.category}</p>
-                    <p className="text-sm text-slate-300">Published</p>
+                  <div className="flex text-xs font-medium text-slate-300">
+                    <p>{publish.category}</p>
+                    <p className="ml-2"> Published</p>
+                    <p className="ml-2">{formatTime}</p>
                   </div>
                 </a>
               </Link>
