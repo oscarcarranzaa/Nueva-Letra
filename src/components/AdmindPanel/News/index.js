@@ -9,7 +9,7 @@ export default function News({ data }) {
   const news = data.response.metadata
   return (
     <>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
         {news.map((publish) => {
           const formatTime = useFormatDate(publish.createdAt, false, '', true)
           const PathURL =
@@ -18,7 +18,7 @@ export default function News({ data }) {
           return (
             <div
               key={publish.id}
-              className="bg-zinc-900 text-white border-2 border-transparent hover:border-sky-600 relative"
+              className="bg-zinc-900 rounded text-white border-2 border-transparent hover:border-sky-600 relative"
             >
               <Link href="/dash/[id]" as={`/dash/${publish.id}`}>
                 <a className="h-full block p-2">

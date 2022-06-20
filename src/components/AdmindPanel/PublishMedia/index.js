@@ -15,7 +15,7 @@ export default function PublishMedia({ url, short }) {
       <div className="flex items-center justify-end">
         <button
           type="button"
-          className="flex items-center p-2 mb-2 rounded bg-zinc-800 hover:bg-slate-700"
+          className="flex items-center p-2 mb-2 rounded hover:bg-slate-700"
           onClick={handleShareOpen}
         >
           <div className="pl-1 pr-1">

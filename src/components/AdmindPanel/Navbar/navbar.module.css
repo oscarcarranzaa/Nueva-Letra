@@ -4,15 +4,26 @@
   align-items: center;
   margin-right: 20px;
 }
+.displayMenu{
+  background-color: rgba(39 39 42);
+}
+.menuList > li:hover{
+  background-color: var(--color-dark);
+}
 .menuIconsLink{
   padding: 8px;
 }
 .menuName{
   margin-left: 8px;
   font-size: 15px;
+  color: #fff;
+  font-weight: 600;
 }
 .menuIconsLink{
   margin-left: 20px;
+}
+.pathActive{
+  color: rgb(0, 106, 228);
 }
 @media screen and (max-width: 768px) {
   .navbarNick > p{
@@ -27,6 +38,7 @@
     bottom: 0;
     width: 100%;
     padding: 0%;
+    background-color: #000;
   }
   .menuList{
     display: flex;
@@ -41,6 +53,7 @@
   }
   .menuLink{
     padding: 8px;
+    width: 100%;
   }
   .menuIconsLink{
     display: flex;
@@ -54,12 +67,17 @@
     padding: 5px;
   }
   .menuName{
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
     margin: 0;
+    color: rgb(182, 182, 182);
+    font-weight: 600
   }
   .noneMovil{
     display: none;
+  }
+  .pathActive{
+    color: rgb(0, 106, 228);
   }
 } 
 @media screen and (min-width: 769px) {

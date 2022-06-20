@@ -45,17 +45,14 @@ export default function AdminSidebar({ open }) {
   const isOpen = open ? '' : styles.navClosed
   return (
     <>
-      <div className={`pt-20 pr-3 bg-zinc-800 ${styles.displayMenu} ${isOpen}`}>
+      <div className={`pt-20 pr-3 ${styles.displayMenu} ${isOpen}`}>
         <ul className={styles.menuList}>
           {dataURL.map((link) => {
             const borderCenter = link.id === 3 ? styles.borderCenterMenu : ''
             const hiddenCenter = link.id === 3 ? styles.noneMovil : ''
-            const path = pathname === link.href ? 'text-sky-600' : 'text-white'
+            const path = pathname === link.href ? styles.pathActive : ''
             return (
-              <li
-                key={link.id}
-                className="hover:bg-slate-700 mb-1 rounded-r-md"
-              >
+              <li key={link.id} className=" mb-1 rounded-r-md">
                 <Link href={link.href}>
                   <a className={styles.menuLink}>
                     <div
