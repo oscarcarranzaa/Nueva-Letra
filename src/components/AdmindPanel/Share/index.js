@@ -17,7 +17,7 @@ const DynamicLinkShare = dynamic(
 export default function Share({ shareOpen, url }) {
   return (
     <>
-      <div className="fixed w-full h-full left-0 top-0 flex justify-center items-center z-10">
+      <div className="fixed w-full h-full left-0 top-0 flex justify-center items-center z-30">
         <DynamicLinkShare shareClose={shareOpen} url={url} />
         <div
           className=" z-10 w-full h-full left-0 top-0 "

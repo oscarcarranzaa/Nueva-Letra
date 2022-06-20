@@ -7,8 +7,8 @@ import CopyLink from 'components/AdmindPanel/Share/CopyLink'
 export default function LinkShare({ shareClose, url }) {
   const iconSize = 62
   return (
-    <div className="bg-zinc-700 block z-30 absolute ">
-      <div className="p-5">
+    <div className="bg-zinc-700 block z-30 absolute">
+      <div className="p-3">
         <div className="flex flex-wrap justify-between items-center mb-5">
           <h2 className="text-lg font-medium inline-block">Compartir</h2>
           <div className="flex items-center">
@@ -21,7 +21,7 @@ export default function LinkShare({ shareClose, url }) {
             </button>
           </div>
         </div>
-        <div className="flex justify-center pr-10 pl-10">
+        <div className="flex justify-center">
           <a
             href="https://jwplayer.com/"
             target="_blank"

@@ -17,7 +17,7 @@ export default function CopyLink({ id }) {
         </p>
       </div>
       <div className="flex h-8 justify-between border border-zinc-500 rounded overflow-hidden">
-        <div className="w-full p-1 text-ellipsis overflow-hidden bg-black">
+        <div className="p-1 text-ellipsis overflow-hidden bg-black">
           <input
             type="text"
             value={id}
@@ -26,7 +26,7 @@ export default function CopyLink({ id }) {
             className="hidden"
             ref={refInput}
           />
-          <a href={id} target="_blank" rel="noreferrer" className="">
+          <a href={id} target0="_blank" rel="noreferrer" className="">
             {id}
           </a>
         </div>

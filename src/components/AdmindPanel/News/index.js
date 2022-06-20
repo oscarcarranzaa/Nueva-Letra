@@ -9,7 +9,7 @@ export default function News({ data }) {
   const news = data.response.metadata
   return (
     <>
-      <div className="grid grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {news.map((publish) => {
           const formatTime = useFormatDate(publish.createdAt, false, '', true)
           const PathURL =
@@ -34,7 +34,9 @@ export default function News({ data }) {
                     />
                   </figure>
 
-                  <h5 className="line-clamp-2">{publish.title}</h5>
+                  <h5 className="line-clamp-2 font-semibold">
+                    {publish.title}
+                  </h5>
                   <p className="text-xs text-slate-300">{formatTime}</p>
                   <div className="flex justify-between">
                     <p className="text-sm text-slate-300">{publish.category}</p>

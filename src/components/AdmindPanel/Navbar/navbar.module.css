@@ -34,7 +34,7 @@
   }
   .displayMenu{
     position: fixed;
-    z-index: 999;
+    z-index: 20;
     bottom: 0;
     width: 100%;
     padding: 0%;
