@@ -45,7 +45,7 @@ export default function AdminSidebar({ open }) {
   const isOpen = open ? '' : styles.navClosed
   return (
     <>
-      <div className={`pt-20 pr-3 ${styles.displayMenu} ${isOpen}`}>
+      <div className={`pt-20 pr-3 ${styles.displayMenu} ${isOpen} `}>
         <ul className={styles.menuList}>
           {dataURL.map((link) => {
             const borderCenter = link.id === 3 ? styles.borderCenterMenu : ''

@@ -11,11 +11,13 @@ import Notification from 'components/AdmindPanel/Notification'
 import TextArea from 'components/AdmindPanel/Input/TextArea'
 import EmbedMedia from 'components/AdmindPanel/EmbedMedia'
 import Layout from 'components/AdmindPanel/Layout'
+import EditorLoader from 'components/AdmindPanel/TextEditor/EditorLoader'
 
 const DynamicTextEditor = dynamic(
   () => import('components/AdmindPanel/TextEditor'),
   {
-    ssr: false
+    ssr: false,
+    loading: () => <EditorLoader />
   }
 )
 

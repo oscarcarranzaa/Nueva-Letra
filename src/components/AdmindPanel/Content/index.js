@@ -1,10 +1,12 @@
 import dynamic from 'next/dynamic'
 import TextArea from 'components/AdmindPanel/Input/TextArea'
 import EmbedMedia from '../EmbedMedia'
+import EditorLoader from '../TextEditor/EditorLoader'
 const DynamicTextEditor = dynamic(
   () => import('components/AdmindPanel/TextEditor'),
   {
-    ssr: false
+    ssr: false,
+    loading: () => <EditorLoader />
   }
 )
 export default function Content({ data }) {

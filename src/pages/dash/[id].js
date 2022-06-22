@@ -7,13 +7,9 @@ import styles from 'styles/styles.module.css'
 import Notification from 'components/AdmindPanel/Notification'
 import useValidateDate from 'hooks/useValidateDate'
 import Layout from 'components/AdmindPanel/Layout'
+import LoaderFull from 'components/AdmindPanel/LoaderFull'
+import InputTitle from 'components/AdmindPanel/Input/InputTitle'
 
-const DynamicTitle = dynamic(
-  () => import('components/AdmindPanel/Input/InputTitle'),
-  {
-    ssr: false
-  }
-)
 const DynamicContent = dynamic(() => import('components/AdmindPanel/Content'), {
   ssr: false
 })
@@ -22,7 +18,8 @@ const DynamicInformation = dynamic(
   { ssr: false }
 )
 const DynamicData = dynamic(() => import('components/AdmindPanel/Data'), {
-  ssr: false
+  ssr: false,
+  loading: () => <LoaderFull />
 })
 export default function EditPublish() {
   const ObtainID = useRouter()
@@ -82,14 +79,15 @@ export default function EditPublish() {
         })
     }
   }
-  const inputTitle = querySucces ? (
-    <DynamicTitle Value={publishData.title} />
-  ) : null
   const content = querySucces ? <DynamicContent data={publishData} /> : null
   const Information = querySucces ? (
     <DynamicInformation idNews={publishData} />
   ) : null
-  const Data = querySucces ? <DynamicData dataNews={publishData} /> : null
+  const Data = querySucces ? (
+    <DynamicData dataNews={publishData} />
+  ) : (
+    <LoaderFull />
+  )
   const closeNotification = () => {
     const time = setTimeout(() => setSave(false), 3500)
     return () => clearTimeout(time)
@@ -101,7 +99,7 @@ export default function EditPublish() {
   return (
     <>
       <Layout>
-        <form onSubmit={send}>
+        <form onSubmit={send} className="relative">
           <button
             type="submit"
             className="hidden"
@@ -115,7 +113,7 @@ export default function EditPublish() {
             >
               <Arrow fill="#fff" />
             </div>
-            {inputTitle}
+            <InputTitle Value={publishData.title} />
             <button
               type="submit"
               className={styles.buttonSave}

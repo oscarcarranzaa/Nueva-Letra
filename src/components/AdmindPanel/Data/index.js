@@ -1,14 +1,10 @@
 import ImageData from '../UpdateImage'
 import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import CategoryData from './CategoryData'
 import Tags from '../Tags'
 import styles from 'styles/styles.module.css'
+import AdvanceSettings from 'components/AdmindPanel/AdvancedSettigs'
 
-const DynamicAdvanceSettings = dynamic(
-  () => import('components/AdmindPanel/AdvancedSettigs'),
-  { ssr: false }
-)
 export default function Data({ dataNews, act }) {
   const [data, setData] = useState([])
   const [config, setConfig] = useState(false)
@@ -64,7 +60,7 @@ export default function Data({ dataNews, act }) {
             </div>
           </div>
           <div className={`mt-5 ${styles.slideConfig}`}>
-            <DynamicAdvanceSettings action={act} />
+            <AdvanceSettings action={act} />
           </div>
         </div>
       </div>
