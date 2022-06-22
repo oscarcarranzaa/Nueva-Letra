@@ -9,7 +9,6 @@ import styles from './navbar.module.css'
 
 export default function AdminSidebar({ open }) {
   const { pathname } = useRouter()
-  console.log(pathname)
   const dataURL = [
     {
       id: 1,
@@ -51,6 +50,7 @@ export default function AdminSidebar({ open }) {
             const borderCenter = link.id === 3 ? styles.borderCenterMenu : ''
             const hiddenCenter = link.id === 3 ? styles.noneMovil : ''
             const path = pathname === link.href ? styles.pathActive : ''
+            console.log('caca')
             return (
               <li key={link.id} className=" mb-1 rounded-r-md">
                 <Link href={link.href}>
