@@ -39,8 +39,10 @@ export default function News({ data }) {
                   </h5>
                   <div className="flex text-xs font-medium text-slate-300">
                     <p>{publish.category}</p>
-                    <p className="ml-2"> Published</p>
-                    <p className="ml-2">{formatTime}</p>
+                    <span className="ml-1 mr-1">•</span>
+                    <p> Published</p>
+                    <span className="ml-1 mr-1">•</span>
+                    <p>{formatTime}</p>
                   </div>
                 </a>
               </Link>

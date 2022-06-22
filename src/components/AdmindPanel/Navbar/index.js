@@ -32,7 +32,9 @@ export default function AdminNavbar() {
   console.log(openMenu)
   return (
     <>
-      <header className="bg-zinc-900 text-white fixed right-0 left-0 z-20 p-2 pb-3 pt-3 border-b border-zinc-500">
+      <header
+        className={`bg-zinc-900 text-white fixed right-0 left-0 z-20 p-2 pb-3 pt-3 border-b border-zinc-500 ${styles.headerNav}`}
+      >
         <div className="relative w-full flex items-center justify-between">
           <div className="flex items-center">
             <button

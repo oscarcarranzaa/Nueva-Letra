@@ -4,6 +4,8 @@
 :root {
   --color-primary: #005CDC;
   --color-dark: #111111;
+  --skeleton-primary: #656871;
+  --skeleton-secondary: #82848a;
 }
 *{
   margin: 0;

@@ -1,3 +1,14 @@
+.headerNav{
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgb(122, 122, 122);
+  backdrop-filter: blur(10px);
+}
 .navbarNick{
   display: flex;
   justify-content: center;
