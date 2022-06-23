@@ -6,7 +6,19 @@
   margin-top: 12px;
   border-bottom: 1px solid rgb(165, 165, 165);
   background-color: rgba(235, 235, 235, 0.7);
-  backdrop-filter: saturate(300%) blur(8px);
+  backdrop-filter: saturate(200%) blur(8px);
+}
+.socialMedia{
+  display: flex;
+  
+}
+.socialMedia > a{
+  margin-left: 15px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(0,0,0,0);
+}
+.socialMedia > a:hover{
+  border-bottom: 2px solid var(--color-primary);
 }
 .categoryLinks{
   margin-left: 3px;
