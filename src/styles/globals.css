@@ -28,10 +28,6 @@ section{
 a{
   cursor: pointer;
 }
-main{
-  width: 95%;
-  margin: auto;
-}
 ul{
   padding-inline-start: 0;
   list-style: none;
