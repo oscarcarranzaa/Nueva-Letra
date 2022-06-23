@@ -1,9 +1,6 @@
-import NavBar from 'components/NavBar'
-import LastNews from 'components/Home/LatestNews'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import Footer from 'components/Footer'
 
 export default function NotFount() {
   useEffect(() => {
@@ -11,7 +8,6 @@ export default function NotFount() {
   }, [])
   return (
     <>
-      <NavBar />
       <div className="grid md:grid-cols-2 w-11/12 m-auto mt-10">
         <picture className="w-6/12 m-auto md:w-8/12">
           <Image
@@ -38,8 +34,6 @@ export default function NotFount() {
           </a>
         </Link>
       </div>
-      <LastNews />
-      <Footer />
     </>
   )
 }

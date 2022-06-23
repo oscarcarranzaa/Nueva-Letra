@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import NavBar from 'components/NavBar'
-import Footer from 'components/Footer'
-import News from 'components/News'
 
 export default function categories() {
   const ruta = useRouter()
@@ -22,13 +19,5 @@ export default function categories() {
       })
     }
   }, [ruta])
-  return (
-    <>
-      <NavBar />
-      <main>
-        <News dataNews={categoryData} title={title} />
-      </main>
-      <Footer />
-    </>
-  )
+  return <></>
 }

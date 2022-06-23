@@ -1,15 +1,10 @@
-import { ContinueReading } from 'components/ContinueReading'
-import Footer from 'components/Footer'
-import NavBar from 'components/NavBar'
-import Recomended from 'components/Recomended'
-import SocialMedia from 'components/SocialMedia'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import styles from 'styles/styles.module.css'
 
 export default function K({ data }) {
-  const News = data[0]
+  const News = data
   useEffect(() => {
     document.title = News.title
   }, [News])
@@ -21,7 +16,6 @@ export default function K({ data }) {
   }
   return (
     <>
-      <NavBar />
       <main>
         <div className="grid-70-30 mt-10">
           <div>
@@ -42,9 +36,7 @@ export default function K({ data }) {
               layout="responsive"
               alt={News.title}
             ></Image>
-            <div>
-              <SocialMedia />
-            </div>
+            <div></div>
 
             <div className="mt-5 flex flex-col">
               <span dangerouslySetInnerHTML={text()}></span>
@@ -54,13 +46,9 @@ export default function K({ data }) {
               dangerouslySetInnerHTML={embed()}
             ></div>
           </div>
-          <div>
-            <Recomended />
-          </div>
+          <div></div>
         </div>
-        <ContinueReading keyword={News.keywords} />
       </main>
-      <Footer />
     </>
   )
 }
@@ -70,7 +58,7 @@ export async function getServerSideProps({ params }) {
   const idNews = id.split('_').reverse()[0]
   const res = await fetch(`http://localhost:4000/api/v1/news/${idNews}`)
   const data = await res.json()
-  if (!data.length) {
+  if (!data) {
     return {
       redirect: {
         destination: '/404',
