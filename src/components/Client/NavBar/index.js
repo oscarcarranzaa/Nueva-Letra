@@ -1,5 +1,6 @@
 import FacebookSVG from 'components/Icons/Facebook'
 import SettingsSVG from 'components/Icons/Settings'
+import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -44,6 +45,7 @@ export default function Navbar() {
       <div className="flex justify-between">
         <div>
           <FacebookSVG width={42} height={42} />
+          <YoutubeSVG />
         </div>
         <div className="flex flex-wrap  mt-1">
           {categories.map((category) => {

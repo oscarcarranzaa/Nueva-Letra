@@ -1,4 +1,4 @@
-const FacebookSVG = (props) => (
+const FacebookSVG = ({ size }) => (
   <svg
     clipRule="evenodd"
     fillRule="evenodd"
@@ -7,7 +7,8 @@ const FacebookSVG = (props) => (
     textRendering="geometricPrecision"
     viewBox="17006.82 17511.1 8157.8 8157.8"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
+    height={size}
+    width={size}
   >
     <linearGradient
       id="a"

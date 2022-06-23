@@ -1,8 +1,9 @@
-const YoutubeSVG = (props) => (
+const YoutubeSVG = ({ size }) => (
   <svg
     viewBox="0 0.03 2498 2502.47"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
+    width={size}
+    height={size}
   >
     <path d="M0 .79h2498v2498H0z" fill="none" />
     <path

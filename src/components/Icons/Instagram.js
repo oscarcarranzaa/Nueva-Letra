@@ -1,8 +1,9 @@
-const InstagramSVG = (props) => (
+const InstagramSVG = ({ size }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 3364.7 3364.7"
-    {...props}
+    width={size}
+    height={size}
   >
     <defs>
       <radialGradient
