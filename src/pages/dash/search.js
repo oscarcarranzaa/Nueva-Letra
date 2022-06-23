@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Layout from 'components/AdmindPanel/Layout'
 import { useEffect, useState } from 'react'
-import FilterNews from 'components/AdmindPanel/Search/filter'
+import FilterNews from 'components/Search/filter'
 import { useRouter } from 'next/router'
 import News from 'components/AdmindPanel/News'
 

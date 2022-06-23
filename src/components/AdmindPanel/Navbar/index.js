@@ -5,7 +5,7 @@ import ArrowTriangle from 'components/Icons/ArrowTriangle'
 import Bars from 'components/Icons/Bars'
 import Spinner from 'components/Icons/Spinner'
 import Image from 'next/image'
-import Search from '../Search'
+import Search from '../../Search'
 import AdminSidebar from './SideBar'
 import Link from 'next/link'
 

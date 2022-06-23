@@ -10,6 +10,7 @@ export default function CategoryData({ categoryData }) {
             required={true}
           >
             {[
+              'Relevancias',
               'Denuncias',
               'Sucesos',
               'Internacionales',
@@ -22,7 +23,6 @@ export default function CategoryData({ categoryData }) {
               'Deportes',
               'Agricultura',
               'Comunicados',
-              'Campañas',
               'Notas',
               'Opiniones'
             ].map((category, index) => {
