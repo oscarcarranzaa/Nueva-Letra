@@ -27,7 +27,7 @@ export default function Navbar() {
   const nanData = Object.keys(time).length === 0 ? 'hidden' : ''
   return (
     <>
-      <div className="flex justify-between">
+      <div className="hidden justify-between md:flex">
         <div>
           <div className="flex items-end">
             <img src="/116.webp" alt="wheater" className="w-12" />
@@ -40,14 +40,16 @@ export default function Navbar() {
           <div className="bg-slate-400 w-full h-10"></div>
         </div>
         <div>
-          <div className={`${nanData} flex text-4xl font-bold`}>
-            <p>{time.hour}</p>
-            <span>:</span>
-            <p>{time.minutes}</p>
-            <span className="text-base">{time.timeHour}</span>
+          <div className={nanData}>
+            <div className="flex text-4xl font-bold">
+              <p>{time.hour}</p>
+              <div className={styles.clockAnimation}>:</div>
+              <p>{time.minutes}</p>
+              <span className="text-base">{time.timeHour}</span>
+            </div>
+            <div className="text-xs font-bold">{`${time.day} de ${time.month} del ${time.year}`}</div>
           </div>
-          <div className="text-xs font-medium">{`${time.day} de ${time.month} del ${time.year}`}</div>
-          <p className="text-xs">Hora central Hondureña</p>
+          <p className="text-xs font-medium">Hora central Hondureña</p>
         </div>
       </div>
       <header className={styles.Navbar}>
