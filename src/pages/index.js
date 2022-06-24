@@ -9,7 +9,6 @@ export default function Home() {
         <div className=""></div>
         <div className="mt-96">e</div>
         <div className="mt-96">e</div>
-        <div className="mt-96">default</div>
       </Layout>
     </>
   )

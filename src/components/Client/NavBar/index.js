@@ -1,6 +1,5 @@
 import FacebookSVG from 'components/Icons/Facebook'
 import InstagramSVG from 'components/Icons/Instagram'
-import SettingsSVG from 'components/Icons/Settings'
 import TwitterSVG from 'components/Icons/twitter'
 import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
@@ -16,6 +15,7 @@ import toObject from 'dayjs/plugin/toObject'
 export default function Navbar() {
   dayjs.extend(toObject)
   const [time, setTime] = useState({})
+  const [openMenu, setOpenMenu] = useState(false)
   const categories = Categories()
   useEffect(() => {
     const updateTime = setInterval(() => {
@@ -25,6 +25,7 @@ export default function Navbar() {
     return () => clearInterval(updateTime)
   }, [])
   const nanData = Object.keys(time).length === 0 ? 'hidden' : ''
+  const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
   return (
     <>
       <div className="hidden justify-between md:flex">
@@ -70,11 +71,32 @@ export default function Navbar() {
             <Search />
           </div>
           <div>
-            <SettingsSVG width={24} height={24} />
+            <button type="button" onClick={() => setOpenMenu(!openMenu)}>
+              <div
+                className={`${styles.buttonBar} ${
+                  openMenu ? styles.buttonClose : ''
+                }`}
+              ></div>
+            </button>
           </div>
         </div>
       </header>
-      <div className="flex items-center mb-5 p-2 bg-slate-200">
+      <div className={`${menuToggle} ${styles.menuTop}`}>
+        <div className={styles.menuLinks}>
+          <p className={styles.menuCategory}>Categorías</p>
+          {categories.map((category) => {
+            return (
+              <div key={category.id} className={styles.categoryLinks}>
+                <Link href={'/[category]'} as={`/${category.href}`}>
+                  <a className="text-sm">{category.name}</a>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+        <div className="w-1 h-8 bg-slate-500 ml-3 mr-1 rounded opacity-80 hidden md:block">
+          <span className="opacity-0">|</span>
+        </div>
         <div className={styles.socialMedia}>
           <a href="#" target="_blank" rel="noreferrer">
             <FacebookSVG size={24} />
@@ -89,20 +111,7 @@ export default function Navbar() {
             <TwitterSVG size={24} />
           </a>
         </div>
-        <div className="w-1 h-8 bg-slate-500 ml-3 mr-1 rounded opacity-80">
-          <span className="opacity-0">|</span>
-        </div>
-        <div className="flex flex-wrap  mt-1 ">
-          {categories.map((category) => {
-            return (
-              <div key={category.id} className={styles.categoryLinks}>
-                <Link href={'/[category]'} as={`/${category.href}`}>
-                  <a className="font-semibold p-1 text-sm">{category.name}</a>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
+        <p className={styles.menuFollow}>Siguenos en las redes sociales</p>
       </div>
     </>
   )

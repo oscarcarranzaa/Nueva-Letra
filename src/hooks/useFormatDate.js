@@ -41,7 +41,6 @@ export default function useFormatDate(date, utcBool, formatString, relative) {
     localTimeObject.day = dayjs(getLocalDate).format('D')
     localTimeObject.month = dayjs(getLocalDate).format('MMMM')
     localTimeObject.year = dayjs(getLocalDate).format('YYYY')
-    console.log(getDateUTC)
     return localTimeObject
   }
   if (dateIsValid && utcBool) {
