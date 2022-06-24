@@ -21,13 +21,28 @@ export default function useFormatDate(date, utcBool, formatString, relative) {
     const getDate = new Date().toISOString()
     const timeObject = {}
     timeObject.seconds = dayjs(getDate).format('s')
-    timeObject.minutes = dayjs(getDate).format('m')
+    timeObject.minutes = dayjs(getDate).format('mm')
     timeObject.timeHour = dayjs(getDate).format('a')
     timeObject.hour = dayjs(getDate).format('h')
     timeObject.day = dayjs(getDate).format('D')
     timeObject.month = dayjs(getDate).format('MMMM')
     timeObject.year = dayjs(getDate).format('YYYY')
     return timeObject
+  }
+  if (date === 'getObjectLocalTime') {
+    const getDateUTC = dayjs.utc().format()
+    const timeZone = 'America/Tegucigalpa'
+    const getLocalDate = dayjs(getDateUTC).tz(timeZone)
+    const localTimeObject = {}
+    localTimeObject.seconds = dayjs(getLocalDate).format('s')
+    localTimeObject.minutes = dayjs(getLocalDate).format('mm')
+    localTimeObject.timeHour = dayjs(getLocalDate).format('a')
+    localTimeObject.hour = dayjs(getLocalDate).format('h')
+    localTimeObject.day = dayjs(getLocalDate).format('D')
+    localTimeObject.month = dayjs(getLocalDate).format('MMMM')
+    localTimeObject.year = dayjs(getLocalDate).format('YYYY')
+    console.log(getDateUTC)
+    return localTimeObject
   }
   if (dateIsValid && utcBool) {
     // este bloque covierte la UTC a la zona horaria

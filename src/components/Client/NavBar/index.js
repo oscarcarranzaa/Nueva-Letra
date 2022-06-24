@@ -19,7 +19,7 @@ export default function Navbar() {
   const categories = Categories()
   useEffect(() => {
     const updateTime = setInterval(() => {
-      const timeObject = useFormatDate('getObjectTime')
+      const timeObject = useFormatDate('getObjectLocalTime')
       setTime(timeObject)
     }, 1000)
     return () => clearInterval(updateTime)
