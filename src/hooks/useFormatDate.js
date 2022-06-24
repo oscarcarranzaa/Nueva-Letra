@@ -3,6 +3,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import objectSupport from 'dayjs/plugin/objectSupport'
 import 'dayjs/locale/es'
 
 dayjs().locale('es').format()
@@ -10,12 +11,24 @@ dayjs.extend(timezone)
 dayjs.extend(utc)
 dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)
+dayjs.extend(objectSupport)
 export default function useFormatDate(date, utcBool, formatString, relative) {
   const dateIsValid = dayjs(new Date(date)).isValid()
   const strFormatDate = formatString || 'D MMMM YYYY, h:mm a'
   const isRelative = relative || false
   dayjs.locale('es')
-
+  if (date === 'getObjectTime') {
+    const getDate = new Date().toISOString()
+    const timeObject = {}
+    timeObject.seconds = dayjs(getDate).format('s')
+    timeObject.minutes = dayjs(getDate).format('m')
+    timeObject.timeHour = dayjs(getDate).format('a')
+    timeObject.hour = dayjs(getDate).format('h')
+    timeObject.day = dayjs(getDate).format('D')
+    timeObject.month = dayjs(getDate).format('MMMM')
+    timeObject.year = dayjs(getDate).format('YYYY')
+    return timeObject
+  }
   if (dateIsValid && utcBool) {
     // este bloque covierte la UTC a la zona horaria
     const dateUTC = new Date(date)

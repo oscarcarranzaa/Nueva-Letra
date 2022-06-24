@@ -10,19 +10,21 @@ import { useEffect, useState } from 'react'
 import Categories from './categories'
 import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
+import dayjs from 'dayjs'
+import toObject from 'dayjs/plugin/toObject'
 
 export default function Navbar() {
-  const [time, setTime] = useState('')
+  dayjs.extend(toObject)
+  const [time, setTime] = useState({})
   const categories = Categories()
   useEffect(() => {
     const updateTime = setInterval(() => {
-      const obtainData = new Date().toISOString()
-      const formatTime = useFormatDate(obtainData, false)
-      setTime(formatTime)
+      const timeObject = useFormatDate('getObjectTime')
+      setTime(timeObject)
     }, 1000)
-    console.log(time)
     return () => clearInterval(updateTime)
   }, [])
+  const nanData = Object.keys(time).length === 0 ? 'hidden' : ''
   return (
     <>
       <div className="flex justify-between">
@@ -37,7 +39,16 @@ export default function Navbar() {
         <div className="w-8/12">
           <div className="bg-slate-400 w-full h-10"></div>
         </div>
-        <div>{time}</div>
+        <div>
+          <div className={`${nanData} flex text-4xl font-bold`}>
+            <p>{time.hour}</p>
+            <span>:</span>
+            <p>{time.minutes}</p>
+            <span className="text-base">{time.timeHour}</span>
+          </div>
+          <div className="text-xs font-medium">{`${time.day} de ${time.month} del ${time.year}`}</div>
+          <p className="text-xs">Hora central Hondureña</p>
+        </div>
       </div>
       <header className={styles.Navbar}>
         <div className="relative w-full flex items-center justify-between p-2">
