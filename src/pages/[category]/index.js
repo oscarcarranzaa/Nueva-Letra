@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Layout from 'components/Client/Layout'
 
 export default function categories() {
   const ruta = useRouter()
@@ -19,5 +20,5 @@ export default function categories() {
       })
     }
   }, [ruta])
-  return <></>
+  return <Layout />
 }

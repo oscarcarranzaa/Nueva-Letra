@@ -99,7 +99,7 @@
 @media screen and (max-width: 767px) {
   .menuTop{
     background-color: rgba(235, 235, 235, 0.7);
-    backdrop-filter: saturate(200%) blur(8px);
+    backdrop-filter: saturate(200%) blur(12px);
     display: block;
     position: fixed;
     top: 70;

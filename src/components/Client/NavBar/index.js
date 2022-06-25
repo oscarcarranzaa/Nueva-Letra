@@ -5,26 +5,16 @@ import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Categories from './categories'
 import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
-import dayjs from 'dayjs'
-import toObject from 'dayjs/plugin/toObject'
+import TimeGet from './getTime'
 
 export default function Navbar() {
-  dayjs.extend(toObject)
-  const [time, setTime] = useState({})
+  const dateTime = useFormatDate('getObjectLocalTime')
   const [openMenu, setOpenMenu] = useState(false)
   const categories = Categories()
-  useEffect(() => {
-    const updateTime = setInterval(() => {
-      const timeObject = useFormatDate('getObjectLocalTime')
-      setTime(timeObject)
-    }, 1000)
-    return () => clearInterval(updateTime)
-  }, [])
-  const nanData = Object.keys(time).length === 0 ? 'hidden' : ''
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
   return (
     <>
@@ -41,15 +31,7 @@ export default function Navbar() {
           <div className="bg-slate-400 w-full h-10"></div>
         </div>
         <div>
-          <div className={nanData}>
-            <div className="flex text-4xl font-bold">
-              <p>{time.hour}</p>
-              <div className={styles.clockAnimation}>:</div>
-              <p>{time.minutes}</p>
-              <span className="text-base">{time.timeHour}</span>
-            </div>
-            <div className="text-xs font-bold">{`${time.day} de ${time.month} del ${time.year}`}</div>
-          </div>
+          <TimeGet timeData={dateTime} />
           <p className="text-xs font-medium">Hora central Hondureña</p>
         </div>
       </div>
