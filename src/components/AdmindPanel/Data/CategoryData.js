@@ -1,4 +1,61 @@
 export default function CategoryData({ categoryData }) {
+  const categoriesLinks = [
+    {
+      id: 1,
+      name: 'Sucesos',
+      href: 'sucesos'
+    },
+    {
+      id: 2,
+      name: 'Internacionales',
+      href: 'internacionales'
+    },
+    {
+      id: 3,
+      name: 'Salud',
+      href: 'salud'
+    },
+    {
+      id: 4,
+      name: 'Entretenimiento',
+      href: 'entretenimiento'
+    },
+    {
+      id: 5,
+      name: 'Política',
+      href: 'politica'
+    },
+    {
+      id: 6,
+      name: 'Economía',
+      href: 'economia'
+    },
+    {
+      id: 7,
+      name: 'Tecnología',
+      href: 'tecnologia'
+    },
+    {
+      id: 8,
+      name: 'Educación',
+      href: 'educacion'
+    },
+    {
+      id: 9,
+      name: 'Deportes',
+      href: 'deportes'
+    },
+    {
+      id: 10,
+      name: 'Comunicados',
+      href: 'comunicados'
+    },
+    {
+      id: 11,
+      name: 'Notas',
+      href: 'notas'
+    }
+  ]
   return (
     <>
       <div className="flex flex-wrap">
@@ -9,27 +66,15 @@ export default function CategoryData({ categoryData }) {
             name="category"
             required={true}
           >
-            {[
-              'Relevancias',
-              'Denuncias',
-              'Sucesos',
-              'Internacionales',
-              'Salud',
-              'Entretenimiento',
-              'Política',
-              'Economía',
-              'Tecnología',
-              'Educación',
-              'Deportes',
-              'Agricultura',
-              'Comunicados',
-              'Notas',
-              'Opiniones'
-            ].map((category, index) => {
+            {categoriesLinks.map((category) => {
               const select = categoryData === category ? true : ''
               return (
-                <option key={index} Value={category} selected={select}>
-                  {category}
+                <option
+                  key={category.id}
+                  Value={category.href}
+                  selected={select}
+                >
+                  {category.name}
                 </option>
               )
             })}
