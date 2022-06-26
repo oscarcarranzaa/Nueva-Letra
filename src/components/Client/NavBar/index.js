@@ -63,7 +63,7 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      <div className={`${menuToggle} ${styles.menuTop}`}>
+      <nav className={`${menuToggle} ${styles.menuTop}`}>
         <div className={styles.menuLinks}>
           <p className={styles.menuCategory}>Categorías</p>
           {categories.map((category) => {
@@ -94,7 +94,7 @@ export default function Navbar() {
           </a>
         </div>
         <p className={styles.menuFollow}>Siguenos en las redes sociales</p>
-      </div>
+      </nav>
     </>
   )
 }
