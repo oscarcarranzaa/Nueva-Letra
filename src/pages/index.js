@@ -11,7 +11,7 @@ const DynamicNews = dynamic(() => import('../components/Client/News'), {
 export default function Home() {
   const hostProduction = 'http://localhost:4000'
   const { data: latestData, loading: loadingLatest } = useFetch(
-    `${hostProduction}/client/v1/news?limit=10`
+    `${hostProduction}/client/v1/news?limit=5`
   )
   const latestNews = loadingLatest ? (
     'cargando'
@@ -29,7 +29,7 @@ export default function Home() {
             <SideNews />
           </div>
         </div>
-        {latestNews}
+        <div className="w-full">{latestNews}</div>
       </Layout>
     </>
   )
