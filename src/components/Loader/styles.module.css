@@ -7,8 +7,8 @@
   z-index: 999;
 }
 .loaderWidth{
-  background-color: red;
   height: 2px;
+  background-color: red;
 }
 .loaderFinish{
   background-color: blue;

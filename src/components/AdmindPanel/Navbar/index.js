@@ -48,7 +48,7 @@ export default function AdminNavbar() {
               <Link href="/dash">
                 <a>
                   <Image
-                    src="/CDM_logo.png"
+                    src="/static/images/CDM_logo.png"
                     width={100}
                     height={50}
                     layout="responsive"

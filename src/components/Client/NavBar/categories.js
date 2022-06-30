@@ -57,8 +57,8 @@ export default function Categories() {
     },
     {
       id: 11,
-      name: 'Notas',
-      href: 'notas'
+      name: 'Más',
+      href: 'mas'
     }
   ]
   return categoriesLinks

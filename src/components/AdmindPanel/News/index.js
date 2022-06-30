@@ -4,6 +4,7 @@ import Link from 'next/link'
 import useFormat from 'hooks/useFormat'
 import PublishMedia from '../PublishMedia'
 import Image from 'next/image'
+import useCategoryID from 'hooks/useCategoryID'
 
 export default function News({ data }) {
   const news = data.response.metadata
@@ -15,6 +16,8 @@ export default function News({ data }) {
           const PathURL =
             publish.title === undefined ? '' : useFormat(publish.title)
           const URL = `http://localhost:3000/${publish.category}/${PathURL}_${publish.id}`
+          const category = useCategoryID(publish.category_code)
+          const categoryName = category[0].name
           return (
             <div
               key={publish.id}
@@ -38,7 +41,7 @@ export default function News({ data }) {
                     {publish.title}
                   </h5>
                   <div className="flex text-xs font-medium text-slate-300">
-                    <p>{publish.category}</p>
+                    <p>{categoryName}</p>
                     <span className="ml-1 mr-1">•</span>
                     <p> Published</p>
                     <span className="ml-1 mr-1">•</span>

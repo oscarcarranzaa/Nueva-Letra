@@ -10,6 +10,7 @@
 .menuTop{
   display: flex;
   flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 .menuFollow{
   display: none;
@@ -134,6 +135,7 @@
   }
   .categoryLinks{
     border-radius: 5px;
+    user-select: none;
   }
   .categoryLinks:hover{
     text-decoration: none;

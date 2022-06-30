@@ -12,8 +12,8 @@ import useFormatDate from 'hooks/useFormatDate'
 import TimeGet from './getTime'
 
 export default function Navbar() {
-  const dateTime = useFormatDate('getObjectLocalTime')
   const [openMenu, setOpenMenu] = useState(false)
+  const dateTime = useFormatDate('getObjectLocalTime')
   const categories = Categories()
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
   return (
@@ -41,7 +41,7 @@ export default function Navbar() {
             <Link href={'/'}>
               <a>
                 <Image
-                  src={'/CDM_logo.png'}
+                  src={'/static/images/CDM_logo.png'}
                   width={100}
                   height={55}
                   layout="intrinsic"
