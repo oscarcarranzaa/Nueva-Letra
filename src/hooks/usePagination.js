@@ -1,5 +1,5 @@
 export default function usePagination(totalPaginates, thisPage, size) {
-  const defaultPaginates = 7 || size
+  const defaultPaginates = size || 7
   const pages =
     totalPaginates <= defaultPaginates ? totalPaginates : defaultPaginates
   const sidePaginate = Math.floor(pages / 2) + 1
@@ -13,6 +13,7 @@ export default function usePagination(totalPaginates, thisPage, size) {
         thisPage >= totalPaginates - pages2
           ? thisPage - (totalPaginates - pages2)
           : 0
+      console.log(prevPage, nextPage)
       const nextPageFix = totalPaginates === 2 ? 0 : nextPage
       return thisPage - prevPage + i + 1 - nextPageFix
     })

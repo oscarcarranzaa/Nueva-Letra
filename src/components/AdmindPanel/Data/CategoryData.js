@@ -1,4 +1,4 @@
-import categoryID from 'components/category'
+import categoryID from 'pages/category.json'
 export default function CategoryData({ categoryData }) {
   return (
     <>

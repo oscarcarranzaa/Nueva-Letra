@@ -1,8 +1,14 @@
-export default function CategoryTitle({ title }) {
+import Link from 'next/link'
+
+export default function CategoryTitle({ title, href }) {
   return (
     <>
-      <div>
-        <h1>{title}</h1>
+      <div className="w-full mb-2">
+        <Link href={'/[category]'} as={`/${href}`}>
+          <a className="text-lg font-semibold  p-1 pl-2 pr-2 rounded hover:bg-slate-200">
+            {title}
+          </a>
+        </Link>
       </div>
     </>
   )

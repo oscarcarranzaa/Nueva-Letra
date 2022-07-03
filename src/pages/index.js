@@ -11,8 +11,8 @@ const DynamicNews = dynamic(() => import('../components/Client/News'), {
 })
 
 export default function Home() {
-  const { data, loading, error } = useFetch(
-    'http://localhost:4000/api/v1/home?limit=5'
+  const { data, loading } = useFetch(
+    'http://localhost:4000/api/v1/home?limit=4'
   )
 
   return (
@@ -32,18 +32,22 @@ export default function Home() {
               const keyData = data.category[key]
               const mapKey = keyData.map((keyCat) => {
                 const category = useCategoryID(keyCat.category_code)
-                console.log(category)
-                const categoryName = category[0].name
-                return categoryName
+                return category[0]
               })
-              return (
-                <div key={key}>
-                  <CategoryTitle title={mapKey[0]} />
-                  <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-                    <DynamicNews news={keyData} />
+              const isCategory = data.category[key].length
+              if (isCategory >= 1) {
+                const categoryName = mapKey[0].name
+                const categoryValue = mapKey[0].value
+                return (
+                  <div key={key} className="mb-5">
+                    <CategoryTitle title={categoryName} href={categoryValue} />
+                    <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-5">
+                      <DynamicNews news={keyData} />
+                    </div>
                   </div>
-                </div>
-              )
+                )
+              }
+              return null
             })}
       </Layout>
     </>

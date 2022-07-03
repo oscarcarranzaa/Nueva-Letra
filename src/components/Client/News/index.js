@@ -7,7 +7,7 @@ import styles from './News.module.css'
 export default function NewsData({ news }) {
   return (
     <>
-      {news.filter(Boolean).map((res) => {
+      {news.map((res) => {
         const date = useFormatDate(
           res.createdAt,
           false,

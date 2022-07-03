@@ -1,4 +1,4 @@
-import categoryArray from 'components/category'
+import categoryArray from 'pages/category.json'
 export default function useCategoryID(str) {
   const catID = categoryArray.filter((cat) => cat.id === str)
   const catName = categoryArray.filter((cat) => cat.name === str)
