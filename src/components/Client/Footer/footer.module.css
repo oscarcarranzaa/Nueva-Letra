@@ -1,0 +1,91 @@
+.FooterData{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 4px 20px;
+}
+.Contacs{
+  display: inline-block;
+  margin: auto;
+}
+.Contacs > li{
+  display: flex;
+  margin-bottom: 5px;
+}
+.Contacs > li > p{
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.AdsCont{
+  display: inline-block;
+}
+.AdsContac{
+  margin-top: 15px;
+  display: flex;
+  padding: 5px 15px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  background-color: var(--color-primary);
+}
+.Newsletter{
+  padding: 0px 10px;
+}
+.FooterTitle{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.NewsletterInfo{
+  text-align: center;
+  max-width: 60ch;
+  margin: auto;
+}
+.NewsletterInput{
+  display: flex;
+  justify-content: center;
+}
+.NewsletterInput{
+  margin-top: 20px;
+}
+.NewsletterInput input{
+  padding: 4px;
+  border: 1px solid var(--color-primary);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.NewsletterInput button{
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0px 4px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.socialMedia{
+  display: flex;
+  justify-content: center; 
+  margin-top: 30px;
+}
+.socialMedia > a{
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(0,0,0,0);
+}
+.socialMedia > a:hover{
+  transform: scale(1.1);
+}
+@media screen and (max-width: 767px){
+  .FooterData{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .FooterTitle{
+    margin-top: 30px;
+  }
+  .AdsCont{
+    margin: auto ;
+  }
+  .socialMedia{
+    margin-top: 10px;
+  }
+}
