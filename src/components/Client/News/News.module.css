@@ -1,19 +1,20 @@
 .linkNews{
   padding: 4px 4px;
-  border-radius: 5px;
-  background-color: rgb(216, 216, 216);
+  border-radius: 3px;
+  background-color: rgb(230, 230, 230);
   border: 2px solid transparent;
   transition: transform .2s linear;
 }
 .linkNews:hover{
-  border: 2px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   transform: scale(1.02);
 }
 .figureImage{
   aspect-ratio: 16 / 9;
+  display: block;
   width: 100%;
   position: relative;
-  color: #fff;  
+  color: #fff;
 }
 .imageOpacity{
   background: linear-gradient(0deg,#000000de 20%,#00000000 75%);

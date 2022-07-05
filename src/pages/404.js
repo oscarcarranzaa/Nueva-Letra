@@ -1,3 +1,4 @@
+import Layout from 'components/Client/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -7,7 +8,7 @@ export default function NotFount() {
     document.title = '404 - Not Fount'
   }, [])
   return (
-    <>
+    <Layout>
       <div className="grid md:grid-cols-2 w-11/12 m-auto mt-10">
         <picture className="w-6/12 m-auto md:w-8/12">
           <Image
@@ -34,6 +35,6 @@ export default function NotFount() {
           </a>
         </Link>
       </div>
-    </>
+    </Layout>
   )
 }

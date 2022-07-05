@@ -33,7 +33,7 @@ export default function NewsData({ news }) {
                   objectFit="cover"
                 />
               </figure>
-              <p className="text-base font-semibold line-clamp-2 ">
+              <p className="text-sm md:text-base font-semibold line-clamp-2 ">
                 {res.title}
               </p>
               <div className="flex text-xs font-semibold justify-between text-slate-800">

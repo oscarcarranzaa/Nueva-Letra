@@ -5,9 +5,11 @@ import SliderNews from 'components/Client/Slider'
 import useFetch from 'hooks/useFetch'
 import CategoryTitle from 'components/Client/CategoryTitle'
 import useCategoryID from 'hooks/useCategoryID'
+import LoaderNews from 'components/AdmindPanel/News/LoaderNews'
 
 const DynamicNews = dynamic(() => import('../components/Client/News'), {
-  ssr: false
+  ssr: false,
+  loading: () => <LoaderNews limits={1} />
 })
 
 export default function Home() {
@@ -26,29 +28,31 @@ export default function Home() {
             <SideNews />
           </div>
         </div>
-        {loading
-          ? null
-          : Object.keys(data.category).map((key, index) => {
-              const keyData = data.category[key]
-              const mapKey = keyData.map((keyCat) => {
-                const category = useCategoryID(keyCat.category_code)
-                return category[0]
-              })
-              const isCategory = data.category[key].length
-              if (isCategory >= 1) {
-                const categoryName = mapKey[0].name
-                const categoryValue = mapKey[0].value
-                return (
-                  <div key={key} className="mb-5">
-                    <CategoryTitle title={categoryName} href={categoryValue} />
-                    <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-5">
-                      <DynamicNews news={keyData} />
-                    </div>
+        {loading ? (
+          <LoaderNews limits={4} />
+        ) : (
+          Object.keys(data.category).map((key, index) => {
+            const keyData = data.category[key]
+            const mapKey = keyData.map((keyCat) => {
+              const category = useCategoryID(keyCat.category_code)
+              return category[0]
+            })
+            const isCategory = data.category[key].length
+            if (isCategory >= 1) {
+              const categoryName = mapKey[0].name
+              const categoryValue = mapKey[0].value
+              return (
+                <div key={key} className="mb-5">
+                  <CategoryTitle title={categoryName} href={categoryValue} />
+                  <div className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-5">
+                    <DynamicNews news={keyData} />
                   </div>
-                )
-              }
-              return null
-            })}
+                </div>
+              )
+            }
+            return null
+          })
+        )}
       </Layout>
     </>
   )

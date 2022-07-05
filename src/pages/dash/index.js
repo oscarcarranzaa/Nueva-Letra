@@ -16,7 +16,6 @@ const DynamicPublishItems = dynamic(
 export default function Dash() {
   const [feedPublish, setFeedPublish] = useState()
   const [querySuccess, setQuerySuccess] = useState(false)
-  console.log(feedPublish)
   useEffect(() => {
     document.title = 'CDM - Dashboard'
     axios

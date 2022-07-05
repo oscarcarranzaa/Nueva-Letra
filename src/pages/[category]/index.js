@@ -24,9 +24,6 @@ export default function categories() {
   const limit = 12
   useEffect(() => {
     if (isReady) {
-      const categoryType = useCategoryID(category)
-      const categoryName = categoryType[0].name
-      document.title = `CDM - ${categoryName.toUpperCase()}`
       setLoading(true)
       axios
         .get(
