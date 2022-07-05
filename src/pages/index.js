@@ -5,18 +5,28 @@ import SliderNews from 'components/Client/Slider'
 import useFetch from 'hooks/useFetch'
 import CategoryTitle from 'components/Client/CategoryTitle'
 import useCategoryID from 'hooks/useCategoryID'
-import LoaderNews from 'components/AdmindPanel/News/LoaderNews'
+import LoaderNews from 'components/Client/News/Loader'
+import NewsHome from 'components/Client/NewsHome'
 
-const DynamicNews = dynamic(() => import('../components/Client/News'), {
+const DynamicNewsHome = dynamic(() => import('../components/Client/NewsHome'), {
   ssr: false,
   loading: () => <LoaderNews limits={1} />
 })
-
+const DynamicNews = dynamic(() => import('../components/Client/News'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full">
+      <LoaderNews limits={4} />
+    </div>
+  )
+})
 export default function Home() {
   const { data, loading } = useFetch(
     'http://localhost:4000/api/v1/home?limit=4'
   )
-
+  const { data: dataLast, loadingLast } = useFetch(
+    'http://localhost:4000/api/v1/client?limit=5'
+  )
   return (
     <>
       <Layout>
@@ -28,6 +38,12 @@ export default function Home() {
             <SideNews />
           </div>
         </div>
+        {loading ? null : (
+          <DynamicNewsHome
+            data={dataLast.response.metadata}
+            title="Last News"
+          />
+        )}
         {loading ? (
           <LoaderNews limits={4} />
         ) : (
@@ -44,9 +60,9 @@ export default function Home() {
               return (
                 <div key={key} className="mb-5">
                   <CategoryTitle title={categoryName} href={categoryValue} />
-                  <div className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-5">
+                  <section className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-8">
                     <DynamicNews news={keyData} />
-                  </div>
+                  </section>
                 </div>
               )
             }

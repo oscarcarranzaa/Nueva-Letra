@@ -1,3 +1,4 @@
+import Layout from 'components/Client/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -16,18 +17,13 @@ export default function K({ data }) {
   }
   return (
     <>
-      <main>
-        <div className="grid-70-30 mt-10">
+      <Layout>
+        <div className="grid-70-30 mt-10 p-3">
           <div>
-            <div>
-              <Link href={`/${News.category}`}>
-                <a className="pl-2 pr-2 pb-1 pt-1 bg-sky-600 text-white hover:underline">
-                  {News.category}
-                </a>
-              </Link>
-            </div>
-            <h3 className="text-3xl font-bold mb-2">{News.title}</h3>
-            <p className="mb-5 font-serif text-slate-600">{News.description}</p>
+            <h1 className="text-3xl font-bold mb-2">{News.title}</h1>
+            <h4 className="mb-5 font-serif text-slate-600">
+              {News.description}
+            </h4>
             <Image
               src={News.image}
               width={400}
@@ -41,14 +37,9 @@ export default function K({ data }) {
             <div className="mt-5 flex flex-col">
               <span dangerouslySetInnerHTML={text()}></span>
             </div>
-            <div
-              className={styles.responsiveIframe}
-              dangerouslySetInnerHTML={embed()}
-            ></div>
           </div>
-          <div></div>
         </div>
-      </main>
+      </Layout>
     </>
   )
 }

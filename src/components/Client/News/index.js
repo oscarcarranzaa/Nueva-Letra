@@ -3,6 +3,7 @@ import Link from 'next/link'
 import useCategoryID from 'hooks/useCategoryID'
 import useFormatDate from 'hooks/useFormatDate'
 import styles from './News.module.css'
+import useFormat from 'hooks/useFormat'
 
 export default function NewsData({ news }) {
   return (
@@ -17,10 +18,11 @@ export default function NewsData({ news }) {
         const category = useCategoryID(res.category_code)
         const categoryValue = category[0].value
         const categoryName = category[0].name
+        const urlNews = useFormat(res.title)
         return (
           <Link
             href={'/[category]/[id]'}
-            as={`/${categoryValue}/${res.id}`}
+            as={`/${categoryValue}/${urlNews}_${res.id}`}
             key={res.id}
           >
             <a className={styles.linkNews}>
