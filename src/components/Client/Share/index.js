@@ -24,21 +24,25 @@ export default function ShareNews({ url }) {
   return (
     <>
       <div>
+        <p className="text-base font-semibold">Compartir</p>
         <ul className="shareMedia">
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
               <FacebookSolid size={28} fill="#fff" />
             </a>
+            <p>Facebook</p>
           </li>
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
               <TwitterSolid size={28} fill="#fff" />
             </a>
+            <p>Twitter</p>
           </li>
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
               <WhatsappSolid size={28} fill="#fff" />
             </a>
+            <p>WhatsApp</p>
           </li>
           <li>
             <input
@@ -50,6 +54,7 @@ export default function ShareNews({ url }) {
             <button type="button" onClick={copy} ref={refButton}>
               {isCopy}
             </button>
+            <p>Enlace</p>
           </li>
         </ul>
       </div>
@@ -60,14 +65,28 @@ export default function ShareNews({ url }) {
         .shareMedia > li {
           margin-lef: 5px;
           margin-right: 10px;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
         }
         .shareMedia > li > a,
         button {
-          padding: 10px 10px;
+          width: 45px;
+          height: 45px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           border-radius: 50%;
-          display: inline-block;
         }
-
+        .shareMedia > li > a:hover,
+        button:hover {
+          filter: brightness(1.1);
+        }
+        .shareMedia > li > p {
+          font-size: 12px;
+          font-weight: 500;
+          text-align: center;
+        }
         .shareMedia > li:nth-child(1) > a {
           background: #1771e6;
         }
@@ -78,7 +97,12 @@ export default function ShareNews({ url }) {
           background: #36b445;
         }
         .shareMedia > li:nth-child(4) > button {
-          background: #18181b;
+          background: rgb(81, 78, 255);
+          background: radial-gradient(
+            circle,
+            rgba(81, 78, 255, 1) 23%,
+            rgba(4, 26, 149, 1) 100%
+          );
         }
       `}</style>
     </>

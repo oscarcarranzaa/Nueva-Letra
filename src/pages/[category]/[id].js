@@ -26,7 +26,7 @@ export default function K({ data, id }) {
     <>
       <Layout>
         <p>{categoryName}</p>
-        <div className="grid-70-30 mt-10 p-3">
+        <div className="grid-70-30">
           <div>
             <h1 className="text-3xl font-bold mb-2">{News.title}</h1>
             <h4 className="mb-5 font-serif text-slate-800">
@@ -43,9 +43,8 @@ export default function K({ data, id }) {
               ></Image>
             </figure>
             <ShareNews url={url} />
-            <div></div>
-
-            <div className="mt-5 flex flex-col">
+            <hr className="mt-3" />
+            <div className="mt-3 flex flex-col">
               <span dangerouslySetInnerHTML={text()}></span>
             </div>
           </div>
