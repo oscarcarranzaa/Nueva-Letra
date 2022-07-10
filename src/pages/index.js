@@ -8,6 +8,7 @@ import LoaderNews from 'components/Client/News/Loader'
 import NewsHome from 'components/Client/NewsHome'
 import NewsData from '../components/Client/News'
 import SectionTitle from 'components/Client/SectionTitle'
+import PinnedSVG from 'components/Icons/Pinned'
 
 export default function Home() {
   const { data, loading } = useFetch(
@@ -16,17 +17,27 @@ export default function Home() {
   const { data: dataLast, loadingLast } = useFetch(
     'http://localhost:4000/api/v1/client?limit=5'
   )
+  const { data: pinned, loading: pinnedLoading } = useFetch(
+    'http://localhost:4000/api/v1/pinned?limit=4'
+  )
   return (
     <>
       <Layout>
-        <div className="grid grid-cols-6 gap-2">
+        <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
           <div className="col-span-4">
             <SliderNews />
           </div>
           <div className="col-span-2">
-            <SideNews />
+            <div className="flex">
+              <div className="mr-1">
+                <PinnedSVG size={18} fill={'#000'} />
+              </div>
+              <p className="text-sm font-semibold">ANCLADOS</p>
+            </div>
+            {pinnedLoading && null}
+            {pinned && <SideNews data={pinned} />}
           </div>
-        </div>
+        </section>
         <section>
           <SectionTitle title="Últimas noticias" />
           {loadingLast && null}

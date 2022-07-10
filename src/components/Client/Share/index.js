@@ -17,30 +17,29 @@ export default function ShareNews({ url }) {
     setCopied(true)
   }
   const isCopy = copied ? (
-    <CheckSVG width={28} height={28} fill="#fff" />
+    <CheckSVG width={24} height={24} fill="#fff" />
   ) : (
-    <CopyLink size={28} fill="#fff" />
+    <CopyLink size={24} fill="#fff" />
   )
   return (
     <>
-      <div>
-        <p className="text-base font-semibold">Compartir</p>
+      <div className="flex">
         <ul className="shareMedia">
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
-              <FacebookSolid size={28} fill="#fff" />
+              <FacebookSolid size={24} fill="#fff" />
             </a>
             <p>Facebook</p>
           </li>
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
-              <TwitterSolid size={28} fill="#fff" />
+              <TwitterSolid size={24} fill="#fff" />
             </a>
             <p>Twitter</p>
           </li>
           <li>
             <a href="/404" target="_blank" rel="noreferrer">
-              <WhatsappSolid size={28} fill="#fff" />
+              <WhatsappSolid size={24} fill="#fff" />
             </a>
             <p>WhatsApp</p>
           </li>
@@ -71,8 +70,8 @@ export default function ShareNews({ url }) {
         }
         .shareMedia > li > a,
         button {
-          width: 45px;
-          height: 45px;
+          width: 40px;
+          height: 40px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -84,8 +83,8 @@ export default function ShareNews({ url }) {
         }
         .shareMedia > li > p {
           font-size: 12px;
-          font-weight: 500;
           text-align: center;
+          display: none;
         }
         .shareMedia > li:nth-child(1) > a {
           background: #1771e6;

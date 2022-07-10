@@ -5,7 +5,7 @@ export default function CategoryTitle({ title, href }) {
     <>
       <div className="w-full mb-2">
         <Link href={'/[category]'} as={`/${href}`}>
-          <a className="text-lg font-semibold  p-1 pl-2 pr-2 rounded hover:bg-slate-200">
+          <a className="text-lg font-semibold bg-slate-100 p-1 pl-2 pr-2 rounded hover:bg-slate-200">
             {title}
           </a>
         </Link>
