@@ -3,6 +3,7 @@ import CategoryTitle from 'components/Client/CategoryTitle'
 import Layout from 'components/Client/Layout'
 import ShareNews from 'components/Client/Share'
 import SideNews from 'components/Client/SideNews'
+import Tags from 'components/Client/Tags'
 import PinnedSVG from 'components/Icons/Pinned'
 import useCategoryID from 'hooks/useCategoryID'
 import Image from 'next/image'
@@ -12,6 +13,7 @@ import styles from 'styles/styles.module.css'
 
 export default function K({ data, id, pin }) {
   const News = data
+  console.log(data.keywords)
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name
@@ -63,6 +65,7 @@ export default function K({ data, id, pin }) {
             taboola ads
           </div>
         </div>
+        <Tags tags={data.keywords} />
       </Layout>
     </>
   )

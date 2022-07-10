@@ -1,3 +1,4 @@
+import useTags from 'hooks/useTags'
 import { useState, useEffect } from 'react'
 export default function TagsInput({ symbol, use, name, required, dataTags }) {
   const [tags, setTags] = useState('')
@@ -8,7 +9,8 @@ export default function TagsInput({ symbol, use, name, required, dataTags }) {
   const handleChange = (e) => {
     setTags(e.target.value)
   }
-  const tagsArray = tags.split(',')
+
+  const tagsArray = useTags(tags)
   return (
     <>
       <div className="mt-5">
@@ -26,16 +28,6 @@ export default function TagsInput({ symbol, use, name, required, dataTags }) {
         </div>
         <div className="flex flex-wrap mb-3 mt-3 text-sm">
           {tagsArray.map((tag, index) => {
-            if (tagsArray[0] === '') {
-              return (
-                <p
-                  key={index}
-                  className="text-slate-400 pr-2 pl-2 cursor-default"
-                >
-                  Aún no has agregado nada
-                </p>
-              )
-            }
             return (
               <div
                 key={index}
@@ -48,6 +40,11 @@ export default function TagsInput({ symbol, use, name, required, dataTags }) {
               </div>
             )
           })}
+          {tagsArray.length === 0 ? (
+            <p className="text-slate-400 pr-2 pl-2 cursor-default">
+              Aún no has agregado nada
+            </p>
+          ) : null}
         </div>
       </div>
     </>
