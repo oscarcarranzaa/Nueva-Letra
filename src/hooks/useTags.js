@@ -3,8 +3,7 @@ export default function useTags(str) {
   const tags = arrayFromComma
     .filter((tagsNull) => tagsNull !== '')
     .map((tag) => {
-      const tagsResetSpace = tag.replace(/ /g, '')
-      return tagsResetSpace
+      return tag
     })
   return tags
 }

@@ -52,6 +52,10 @@ export default function K({ data, id, pin }) {
             <div className="mt-3 flex flex-col">
               <span dangerouslySetInnerHTML={text()}></span>
             </div>
+            <div className="mt-5">
+              <h3 className="text-lg font-semibold">Tags</h3>
+              <Tags tags={data.keywords} />
+            </div>
           </div>
           <div>
             ads
@@ -65,7 +69,6 @@ export default function K({ data, id, pin }) {
             taboola ads
           </div>
         </div>
-        <Tags tags={data.keywords} />
       </Layout>
     </>
   )
