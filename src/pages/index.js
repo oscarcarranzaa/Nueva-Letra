@@ -34,8 +34,10 @@ export default function Home() {
               </div>
               <p className="text-sm font-semibold">ANCLADOS</p>
             </div>
-            {pinnedLoading && null}
-            {pinned && <SideNews data={pinned} />}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
+              {pinnedLoading && null}
+              {pinned && <SideNews data={pinned} />}
+            </div>
           </div>
         </section>
         <section>

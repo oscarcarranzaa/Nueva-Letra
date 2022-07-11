@@ -1,23 +1,27 @@
 import axios from 'axios'
 import CategoryTitle from 'components/Client/CategoryTitle'
 import Layout from 'components/Client/Layout'
+import NewsData from 'components/Client/News'
+import LoaderNews from 'components/Client/News/Loader'
 import ShareNews from 'components/Client/Share'
 import SideNews from 'components/Client/SideNews'
 import Tags from 'components/Client/Tags'
 import PinnedSVG from 'components/Icons/Pinned'
 import useCategoryID from 'hooks/useCategoryID'
+import useFetch from 'hooks/useFetch'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect } from 'react'
-import styles from 'styles/styles.module.css'
 
 export default function K({ data, id, pin }) {
   const News = data
-  console.log(data.keywords)
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name
   const url = `http://localhost:3000/${categoryValue}/${id}`
+  const { data: categoryData, loading: categoryLoad } = useFetch(
+    `http://localhost:4000/api/v1/client?c=${categoryValue}&limit=4`
+  )
+  console.log(categoryData)
   useEffect(() => {
     document.title = News.title
   }, [News])
@@ -53,7 +57,7 @@ export default function K({ data, id, pin }) {
               <span dangerouslySetInnerHTML={text()}></span>
             </div>
             <div className="mt-5">
-              <h3 className="text-lg font-semibold">Tags</h3>
+              <h3 className="text-lg font-semibold mb-2">Tags</h3>
               <Tags tags={data.keywords} />
             </div>
           </div>
@@ -65,9 +69,18 @@ export default function K({ data, id, pin }) {
               </div>
               <p className="text-sm font-semibold">ANCLADOS</p>
             </div>
-            <SideNews data={pin} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
+              <SideNews data={pin} />
+            </div>
             taboola ads
           </div>
+        </div>
+        <div className="mt-8 mb-2">
+          <h3 className="text-lg font-semibold">Más de {categoryName}</h3>
+        </div>
+        {categoryLoad && <LoaderNews limits={4} />}
+        <div className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-8">
+          {categoryData && <NewsData news={categoryData.response.metadata} />}
         </div>
       </Layout>
     </>
@@ -76,11 +89,12 @@ export default function K({ data, id, pin }) {
 
 export async function getServerSideProps({ params }) {
   const { id } = params
+  const SERVER_URL = 'http://localhost:4000'
   const idNews = id.split('_').reverse()[0]
-  const res = await fetch(`http://localhost:4000/api/v1/news/${idNews}`)
-  const pinned = await axios.get('http://localhost:4000/api/v1/pinned?limit=5')
-  const data = await res.json()
-  if (data.length === 0) {
+  const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
+  const resData = await res.json()
+  const pinned = await axios.get(`${SERVER_URL}/api/v1/pinned?limit=5`)
+  if (res.status > 400) {
     return {
       redirect: {
         destination: '/404',
@@ -90,8 +104,8 @@ export async function getServerSideProps({ params }) {
   }
   return {
     props: {
-      data,
       id,
+      data: resData,
       pin: pinned.data
     }
   }

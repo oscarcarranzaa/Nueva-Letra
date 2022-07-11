@@ -16,7 +16,7 @@ export default function SideNews({ data }) {
             as={`/${categoryValue}/${titleUrl}_${res.id}`}
             key={res.id}
           >
-            <a className="flex gap-1 bg-slate-200 p-1 mb-1 rounded hover:underline">
+            <a className="flex gap-1 bg-slate-200 p-1 rounded hover:underline">
               <div className="w-5/12 block">
                 <Image
                   src={res.image}
