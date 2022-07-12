@@ -3,6 +3,7 @@ import CategoryTitle from 'components/Client/CategoryTitle'
 import Layout from 'components/Client/Layout'
 import NewsData from 'components/Client/News'
 import LoaderNews from 'components/Client/News/Loader'
+import Sensitive from 'components/Client/Sensitive'
 import ShareNews from 'components/Client/Share'
 import SideNews from 'components/Client/SideNews'
 import Tags from 'components/Client/Tags'
@@ -39,14 +40,15 @@ export default function K({ data, id, pin }) {
             <div className="flex justify-between">
               <CategoryTitle href={categoryValue} title={categoryName} />
             </div>
+            {data.sensitive && <Sensitive />}
             <h1 className="text-3xl font-bold mb-2">{News.title}</h1>
             <h4 className="font-serif text-slate-800">{News.description}</h4>
             <ShareNews url={url} />
             <figure className="block">
               <Image
                 src={News.image}
-                width={400}
-                height={250}
+                width={150}
+                height={100}
                 objectFit="cover"
                 layout="responsive"
                 alt={News.title}
