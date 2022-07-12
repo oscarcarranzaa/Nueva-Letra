@@ -4,8 +4,13 @@ import CategoryData from './CategoryData'
 import Tags from '../Tags'
 import styles from 'styles/styles.module.css'
 import AdvanceSettings from 'components/AdmindPanel/AdvancedSettigs'
+import PinnedSVG from 'components/Icons/Pinned'
+import PinnedSlash from 'components/Icons/PinnedSlash'
+import WarnSVG from 'components/Icons/Warn'
 
 export default function Data({ dataNews, act }) {
+  const [pinned, setPinned] = useState(dataNews.pinned)
+  const [sensitive, setSensitive] = useState(dataNews.sensitive)
   const [data, setData] = useState([])
   const [config, setConfig] = useState(false)
   const configElemet = config ? styles.slideRight : styles.slideLeft
@@ -18,6 +23,10 @@ export default function Data({ dataNews, act }) {
   }, [dataNews])
 
   const img = data.image || '/'
+  const pinneStyle = pinned ? 'bg-sky-600' : 'bg-transparent hover:bg-blue-900'
+  const sensitiveStyle = sensitive
+    ? 'bg-yellow-500'
+    : 'bg-transparent hover:bg-yellow-900'
   return (
     <>
       <div className="bg-gray-900 rounded-lg overflow-hidden">
@@ -42,8 +51,52 @@ export default function Data({ dataNews, act }) {
             <div className="bg-gray-400 w-full">
               <ImageData img={img} action={act} />
             </div>
-            <div className="mt-10">
-              <CategoryData categoryData={data.category} />
+            <div className="flex mt-2">
+              <div className="flex flex-col items-center mr-3">
+                <label>
+                  <div
+                    className={`p-1 border-2 border-sky-600 rounded-full cursor-pointer ${pinneStyle} hover:scale-105`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={pinned}
+                      name="pinned"
+                      onChange={() => setPinned(!pinned)}
+                      className="hidden"
+                    />
+                    {pinned === true ? (
+                      <PinnedSlash size={24} fill={'#fff'} />
+                    ) : (
+                      <PinnedSVG size={24} fill={'#fff'} />
+                    )}
+                  </div>
+                </label>
+                <small className="text-slate-200">Fijar</small>
+              </div>
+              <div className="flex flex-col items-center">
+                <label>
+                  <div
+                    className={`p-1 border-2 border-yellow-500 rounded-full cursor-pointer ${sensitiveStyle} hover:scale-105`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={sensitive}
+                      name="sensitive"
+                      onChange={() => setSensitive(!sensitive)}
+                      className="hidden"
+                    />
+                    {pinned === true ? (
+                      <WarnSVG width={24} height={24} fill={'#fff'} />
+                    ) : (
+                      <WarnSVG width={24} height={24} fill={'#fff'} />
+                    )}
+                  </div>
+                </label>
+                <small className="text-slate-200">Sencible</small>
+              </div>
+            </div>
+            <div className="mt-5">
+              <CategoryData categoryData={data.category_code} />
               <Tags
                 use={'PALABRAS CLAVES'}
                 name="keywords"

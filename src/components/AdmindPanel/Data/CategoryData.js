@@ -1,4 +1,5 @@
 import categoryID from 'pages/category.json'
+
 export default function CategoryData({ categoryData }) {
   return (
     <>
@@ -11,7 +12,7 @@ export default function CategoryData({ categoryData }) {
             required={true}
           >
             {categoryID.map((category) => {
-              const select = categoryData === category ? true : ''
+              const select = categoryData === category.id ? true : ''
               return (
                 <option
                   key={category.id}
