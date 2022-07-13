@@ -41,7 +41,7 @@ export default function EditPublish() {
       refElement.current.classList.add(styles.disabledButton)
       refElement.current.innerHTML = `<div class=${styles.loaderSave}></div>`
       axios
-        .post('http://localhost:4000/api/v1/news', data, {
+        .post('/news', data, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

@@ -5,9 +5,7 @@ export default function DeleteNews() {
   const Router = useRouter()
   const ID = Router.query.id
   const del = () => {
-    axios
-      .delete(`http://localhost:4000/api/v1/news/${ID}`)
-      .then((succes) => Router.push('/dash'))
+    axios.delete(`/news/${ID}`).then((succes) => Router.push('/dash'))
   }
   return (
     <>

@@ -35,7 +35,6 @@ export default function EditPublish() {
             ObtainID.push('/dash/404')
           } else {
             setPublishData(data)
-            console.log(data.id)
             setQuerySucces(true)
           }
         })
@@ -62,7 +61,7 @@ export default function EditPublish() {
       refElement.current.classList.add(styles.disabledButton)
       refElement.current.innerHTML = `<div class=${styles.loaderSave}></div>`
       axios
-        .put(`http://localhost:4000/api/v1/news/${ID}`, data, {
+        .put(`/news/${ID}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

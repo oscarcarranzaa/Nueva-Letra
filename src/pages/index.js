@@ -11,15 +11,9 @@ import SectionTitle from 'components/Client/SectionTitle'
 import PinnedSVG from 'components/Icons/Pinned'
 
 export default function Home() {
-  const { data, loading } = useFetch(
-    'http://localhost:4000/api/v1/home?limit=4'
-  )
-  const { data: dataLast, loadingLast } = useFetch(
-    'http://localhost:4000/api/v1/client?limit=5'
-  )
-  const { data: pinned, loading: pinnedLoading } = useFetch(
-    'http://localhost:4000/api/v1/pinned?limit=4'
-  )
+  const { data, loading } = useFetch('/home?limit=4')
+  const { data: dataLast, loadingLast } = useFetch('/client?limit=5')
+  const { data: pinned, loading: pinnedLoading } = useFetch('/pinned?limit=4')
   return (
     <>
       <Layout>
@@ -43,9 +37,7 @@ export default function Home() {
         <section>
           <SectionTitle title="Últimas noticias" />
           {loadingLast && null}
-          {dataLast && (
-            <NewsHome data={dataLast.response.metadata}/>
-          )}
+          {dataLast && <NewsHome data={dataLast.response.metadata} />}
         </section>
         <div>Ads</div>
         <section>

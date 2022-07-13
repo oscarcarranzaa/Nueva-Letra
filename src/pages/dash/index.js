@@ -19,7 +19,7 @@ export default function Dash() {
   useEffect(() => {
     document.title = 'CDM - Dashboard'
     axios
-      .get(`http://localhost:4000/api/v1/news?limit=${limitNews}`)
+      .get(`/news?limit=${limitNews}`)
       .then((res) => {
         setFeedPublish(res.data)
         setQuerySuccess(true)

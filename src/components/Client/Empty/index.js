@@ -4,9 +4,7 @@ import NewsHome from '../NewsHome'
 import SectionTitle from '../SectionTitle'
 
 export default function Empty() {
-  const { data, loading } = useFetch(
-    ' http://localhost:4000/api/v1/client?limit=5'
-  )
+  const { data, loading } = useFetch('/client?limit=5')
   return (
     <>
       <div>

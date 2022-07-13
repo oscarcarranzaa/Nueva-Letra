@@ -18,9 +18,9 @@ export default function K({ data, id, pin }) {
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name
-  const url = `http://localhost:3000/${categoryValue}/${id}`
+  const url = `https://www.cdmnoticias.com/${categoryValue}/${id}`
   const { data: categoryData, loading: categoryLoad } = useFetch(
-    `http://localhost:4000/api/v1/client?c=${categoryValue}&limit=4`
+    `/client?c=${categoryValue}&limit=4`
   )
   useEffect(() => {
     document.title = News.title
@@ -98,7 +98,7 @@ export async function getServerSideProps({ params }) {
   const idNews = id.split('_').reverse()[0]
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()
-  const pinned = await axios.get(`${SERVER_URL}/api/v1/pinned?limit=4`)
+  const pinned = await axios.get('/pinned?limit=4')
   if (res.status > 400) {
     return {
       redirect: {

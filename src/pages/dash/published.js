@@ -32,7 +32,7 @@ export default function published() {
       const defaultQuery = query || 1
       setQuerySuccess(false)
       axios
-        .get(`http://localhost:4000/api/v1/news?limit=12&p=${defaultQuery}`)
+        .get(`/news?limit=12&p=${defaultQuery}`)
         .then((res) => {
           setFeedPublish(res.data)
           setQuerySuccess(true)

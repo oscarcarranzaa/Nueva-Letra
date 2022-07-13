@@ -32,9 +32,7 @@ export default function categories() {
       setLoading(true)
       setEmpty(false)
       axios
-        .get(
-          `http://localhost:4000/api/v1/client?c=${category}&limit=${limit}&p=${page}`
-        )
+        .get(`/client?c=${category}&limit=${limit}&p=${page}`)
         .then((res) => {
           setData(res.data)
           setLoading(false)

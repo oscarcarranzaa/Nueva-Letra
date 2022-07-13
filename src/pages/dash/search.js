@@ -11,7 +11,7 @@ export default function published() {
   const id = route.query.q
   useEffect(() => {
     if (route.isReady) {
-      axios.get(`http://localhost:4000/api/v1/search?q=${id}`).then((res) => {
+      axios.get(`/search?q=${id}`).then((res) => {
         setData(res.data)
       })
     }
