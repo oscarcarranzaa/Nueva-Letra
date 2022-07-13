@@ -47,6 +47,9 @@
   text-decoration: underline;
   color: #00f;
 }
+.categoryActive {
+  color: #00f;
+}
 .clockAnimation{
   color: transparent;
   animation: clocAnimation 2s infinite;
@@ -159,6 +162,9 @@
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
+  }
+  .categoryActive > a {
+    color: #00f;
   }
 }
 @keyframes clocAnimation {

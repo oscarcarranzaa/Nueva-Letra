@@ -3,7 +3,7 @@ import Link from 'next/link'
 import useCategoryID from 'hooks/useCategoryID'
 import useFormat from 'hooks/useFormat'
 
-export default function NewsHome({ data, title }) {
+export default function NewsHome({ data }) {
   return (
     <>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
@@ -29,6 +29,7 @@ export default function NewsHome({ data, title }) {
                     height={100}
                     layout="responsive"
                     objectFit="cover"
+                    alt={news.title}
                   />
                 </figure>
                 <h3

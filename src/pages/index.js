@@ -44,7 +44,7 @@ export default function Home() {
           <SectionTitle title="Últimas noticias" />
           {loadingLast && null}
           {dataLast && (
-            <NewsHome data={dataLast.response.metadata} title="Last News" />
+            <NewsHome data={dataLast.response.metadata}/>
           )}
         </section>
         <div>Ads</div>

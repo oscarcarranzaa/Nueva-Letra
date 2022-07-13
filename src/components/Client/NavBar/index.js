@@ -5,17 +5,27 @@ import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Categories from './categories'
 import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
 import TimeGet from './getTime'
+import { useRouter } from 'next/router'
 
 export default function Navbar() {
+  const { query, pathname } = useRouter()
+  const categoryQuery = query.category
   const [openMenu, setOpenMenu] = useState(false)
   const dateTime = useFormatDate('getObjectLocalTime')
   const categories = Categories()
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
+  useEffect(() => {
+    if (openMenu) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'visible'
+    }
+  }, [openMenu])
   return (
     <>
       <div className="hidden justify-between md:flex">
@@ -52,7 +62,7 @@ export default function Navbar() {
           <div className="w-5/12">
             <Search />
           </div>
-          <div>
+          <div className="md:hidden">
             <button type="button" onClick={() => setOpenMenu(!openMenu)}>
               <div
                 className={`${styles.buttonBar} ${
@@ -67,8 +77,16 @@ export default function Navbar() {
         <div className={styles.menuLinks}>
           <p className={styles.menuCategory}>Categorías</p>
           {categories.map((category) => {
+            const active =
+              categoryQuery === category.href && pathname === '/[category]'
+                ? styles.categoryActive
+                : ''
             return (
-              <div key={category.id} className={styles.categoryLinks}>
+              <div
+                key={category.id}
+                className={`${styles.categoryLinks} ${active}`}
+                onClick={() => setOpenMenu(false)}
+              >
                 <Link href={'/[category]'} as={`/${category.href}`}>
                   <a className="text-sm">{category.name}</a>
                 </Link>

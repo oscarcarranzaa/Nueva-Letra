@@ -22,7 +22,6 @@ export default function K({ data, id, pin }) {
   const { data: categoryData, loading: categoryLoad } = useFetch(
     `http://localhost:4000/api/v1/client?c=${categoryValue}&limit=4`
   )
-  console.log(categoryData)
   useEffect(() => {
     document.title = News.title
   }, [News])
@@ -95,7 +94,7 @@ export async function getServerSideProps({ params }) {
   const idNews = id.split('_').reverse()[0]
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()
-  const pinned = await axios.get(`${SERVER_URL}/api/v1/pinned?limit=5`)
+  const pinned = await axios.get(`${SERVER_URL}/api/v1/pinned?limit=4`)
   if (res.status > 400) {
     return {
       redirect: {

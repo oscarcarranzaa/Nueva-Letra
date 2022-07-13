@@ -10,10 +10,8 @@
   transform: scale(1.02);
 }
 .figureImage{
-  aspect-ratio: 16 / 9;
   display: block;
   width: 100%;
-  position: relative;
   color: #fff;
 }
 .imageOpacity{
