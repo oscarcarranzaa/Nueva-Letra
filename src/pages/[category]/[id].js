@@ -33,7 +33,11 @@ export default function K({ data, id, pin }) {
   }
   return (
     <>
-      <Layout>
+      <Layout
+        title={data.title}
+        description={data.description}
+        image={data.image}
+      >
         <div className="grid-70-30">
           <div>
             <div className="flex justify-between">

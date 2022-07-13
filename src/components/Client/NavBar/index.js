@@ -11,6 +11,7 @@ import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
 import TimeGet from './getTime'
 import { useRouter } from 'next/router'
+import BellSVG from 'components/Icons/Bell'
 
 export default function Navbar() {
   const { query, pathname } = useRouter()
@@ -19,13 +20,6 @@ export default function Navbar() {
   const dateTime = useFormatDate('getObjectLocalTime')
   const categories = Categories()
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
-  useEffect(() => {
-    if (openMenu) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'visible'
-    }
-  }, [openMenu])
   return (
     <>
       <div className="hidden justify-between md:flex">
@@ -62,14 +56,19 @@ export default function Navbar() {
           <div className="w-5/12">
             <Search />
           </div>
-          <div className="md:hidden">
-            <button type="button" onClick={() => setOpenMenu(!openMenu)}>
-              <div
-                className={`${styles.buttonBar} ${
-                  openMenu ? styles.buttonClose : ''
-                }`}
-              ></div>
-            </button>
+          <div className="flex">
+            <div className="mr-3 md:mr-0">
+              <BellSVG size={32} fill="#000" />
+            </div>
+            <div className="md:hidden">
+              <button type="button" onClick={() => setOpenMenu(!openMenu)}>
+                <div
+                  className={`${styles.buttonBar} ${
+                    openMenu ? styles.buttonClose : ''
+                  }`}
+                ></div>
+              </button>
+            </div>
           </div>
         </div>
       </header>
