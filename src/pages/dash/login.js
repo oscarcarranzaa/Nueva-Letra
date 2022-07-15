@@ -1,6 +1,14 @@
 import axios from 'axios'
+import CheckSVG from 'components/icons/Check'
+import ClockSVG from 'components/Icons/Clock'
+import Close from 'components/Icons/Close'
+import EyeSVG from 'components/Icons/Eye'
+import EyeInvisibleSVG from 'components/Icons/EyeInvisible'
+import PinnedSVG from 'components/Icons/Pinned'
+import PinnedSlash from 'components/Icons/PinnedSlash'
 import isValidEmail from 'hooks/useValidEmail'
 import { useState } from 'react'
+import styles from 'styles/login.module.css'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -35,47 +43,82 @@ export default function Login() {
     //   })
   }
   const emailSucces = validEmail ? null : 'Correo no válido'
-  const passSucces = validPass ? null : 'Contraseña corta'
+  const passSucces = validPass ? null : 'Contraseña muy corta'
   const inputPass = watchPass ? 'text' : 'password'
   return (
     <>
-      <div className="flex justify-center items-center w-full h-screen">
-        <form onSubmit={sendLogin}>
-          <h2>Iniciar sesión en CDM - Panel</h2>
-          <div>
+      <div className="flex justify-center items-center w-full h-screen bg-zinc-800">
+        <form onSubmit={sendLogin} className={styles.form}>
+          <h2 className="text-lg font-semibold mb-5 pl-2 pr-2">
+            Iniciar sesión en CDM - Panel
+          </h2>
+          <div className={styles.inputCont}>
             <p>Correo electrónico</p>
-            <input
-              type="text"
-              value={email}
-              autoComplete="false"
-              autoCapitalize="false"
-              autoCorrect="false"
-              placeholder="Ponga su correo"
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => validateEmail(email)}
-            />
+            <div
+              className={`${styles.inputLogin} ${
+                !validEmail ? styles.inputFailed : ''
+              }`}
+            >
+              <input
+                type="text"
+                value={email}
+                autoComplete="false"
+                autoCapitalize="false"
+                autoCorrect="false"
+                placeholder="Escribe tu correo"
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => validateEmail(email)}
+              />
+              <button
+                type="button"
+                className={`${styles.buttonInput} ${
+                  email.length === 0 ? 'hidden' : ''
+                }`}
+                onClick={() => setEmail('')}
+              >
+                <Close size={13} fill="#000" />
+              </button>
+            </div>
+            <div className={styles.msgError}>
+              <p>{emailSucces}</p>
+            </div>
           </div>
-          <p>{emailSucces}</p>
-          <div>
+          <div className={styles.inputCont}>
             <p>Contraseña</p>
-            <input
-              type={inputPass}
-              value={pass}
-              autoComplete="false"
-              autoCapitalize="false"
-              autoCorrect="false"
-              placeholder="Y acá la contra"
-              onChange={(e) => setPass(e.target.value)}
-              onBlur={() => {
-                pass.length > 4 ? setValidPass(true) : setValidPass(false)
-              }}
-            />
+            <div
+              className={`${styles.inputLogin} ${
+                !validPass ? styles.inputFailed : ''
+              }`}
+            >
+              <input
+                type={inputPass}
+                value={pass}
+                autoComplete="false"
+                autoCapitalize="false"
+                autoCorrect="false"
+                placeholder="Y aquí la contraseña"
+                onChange={(e) => setPass(e.target.value)}
+                onBlur={() => {
+                  pass.length > 4 ? setValidPass(true) : setValidPass(false)
+                }}
+              />
+              <button
+                type="button"
+                className={styles.buttonInput}
+                onClick={() => setWatchPass(!watchPass)}
+              >
+                {watchPass ? (
+                  <EyeSVG size={20} fill="#000" />
+                ) : (
+                  <EyeInvisibleSVG size={20} fill="#000" />
+                )}
+              </button>
+            </div>
+            <div className={styles.msgError}>
+              <p>{passSucces}</p>
+            </div>
           </div>
-          <p>{passSucces}</p>
-          <button type="button" onClick={() => setWatchPass(!watchPass)}>
-            Pesquizar
-          </button>
-          <button>Vamos</button>
+          <button className={styles.buttonSend}>Vamos</button>
         </form>
       </div>
     </>

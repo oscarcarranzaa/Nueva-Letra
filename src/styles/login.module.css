@@ -1,0 +1,47 @@
+.form{
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 5px;
+}
+.inputCont{
+  margin-bottom: 25px;
+  position: relative;
+}
+.msgError{
+  position: absolute;
+  font-size: 13px;
+  bottom: -20px;
+  color: red;
+}
+.inputCont > p {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.inputLogin{
+  display: flex;
+  border: 1px solid rgb(116, 116, 116);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.inputFailed{
+  border: 1px solid rgba(255, 0, 0, 0.582);
+}
+.inputLogin > input {
+  width: 100%;
+  padding: 3px 10px;
+}
+.buttonInput{
+  padding: 0px 7px;
+}
+.buttonInput:hover{
+  background-color: rgba(0, 0, 0, 0.13);
+}
+.buttonSend{
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 3px 0px;
+  border-radius: 2px;
+  display: block;
+  width: 100%;
+}
