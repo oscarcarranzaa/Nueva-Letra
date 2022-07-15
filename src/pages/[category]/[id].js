@@ -28,9 +28,6 @@ export default function K({ data, id, pin }) {
   const text = () => {
     return { __html: News.text }
   }
-  const embed = () => {
-    return { __html: News.embed }
-  }
   return (
     <>
       <Layout
