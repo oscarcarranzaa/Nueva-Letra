@@ -16,7 +16,6 @@ export default function Pagination({ data }) {
   const thisPage = parseInt(pageQuery) || 1
   useEffect(() => {
     const paginates = usePagination(totalPaginates, thisPage, 5)
-    console.log(paginates)
     setPages(paginates)
     if (thisPage <= 1) {
       setPrev(true)

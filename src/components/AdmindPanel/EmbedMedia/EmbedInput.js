@@ -11,7 +11,6 @@ export default function EmbedInput({ embedClose, embedData }) {
     embedData(dataEmbed)
     embedClose()
   }
-  console.log(dataEmbed)
   return (
     <>
       <div className="absolute z-20 bg-slate-700 p-5 mr-2 ml-2">

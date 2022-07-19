@@ -17,7 +17,6 @@ const DynamicEmbed = dynamic(
 export default function EmbedAdd({ embedOpen, embedData }) {
   const sendEmbed = (data) => {
     embedData(data)
-    console.log(data)
   }
   return (
     <>

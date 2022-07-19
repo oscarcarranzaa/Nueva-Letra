@@ -10,18 +10,10 @@ import Layout from 'components/AdmindPanel/Layout'
 import LoaderFull from 'components/AdmindPanel/LoaderFull'
 import InputTitle from 'components/AdmindPanel/Input/InputTitle'
 import useAuthDash from 'hooks/useAuthFetch'
+import Content from 'components/AdmindPanel/Content'
+import Information from 'components/AdmindPanel/Information'
+import Data from 'components/AdmindPanel/Data'
 
-const DynamicContent = dynamic(() => import('components/AdmindPanel/Content'), {
-  ssr: false
-})
-const DynamicInformation = dynamic(
-  () => import('components/AdmindPanel/Information'),
-  { ssr: false }
-)
-const DynamicData = dynamic(() => import('components/AdmindPanel/Data'), {
-  ssr: false,
-  loading: () => <LoaderFull />
-})
 export default function EditPublish() {
   const ObtainID = useRouter()
   const ID = ObtainID.query.id
@@ -76,20 +68,8 @@ export default function EditPublish() {
           setSave(true)
           closeNotification()
         })
-        .catch((err) => {
-          console.log(err)
-        })
     }
   }
-  const content = querySucces ? <DynamicContent data={publishData} /> : null
-  const Information = querySucces ? (
-    <DynamicInformation idNews={publishData} />
-  ) : null
-  const Data = querySucces ? (
-    <DynamicData dataNews={publishData} />
-  ) : (
-    <LoaderFull />
-  )
   const closeNotification = () => {
     const time = setTimeout(() => setSave(false), 3500)
     return () => clearTimeout(time)
@@ -124,10 +104,11 @@ export default function EditPublish() {
             </button>
           </div>
           <div className={styles.monitorDash}>
-            {content}
+            {publishData && <Content data={publishData} />}
             <div className={styles.dataMonitor}>
-              {Information}
-              {Data}
+              {!querySucces && <LoaderFull />}
+              {publishData && <Information idNews={publishData} />}
+              {publishData && <Data dataNews={publishData} />}
             </div>
           </div>
         </form>

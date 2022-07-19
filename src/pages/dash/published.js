@@ -27,7 +27,6 @@ export default function published() {
   const query = routerFeed.query.p
   useEffect(() => {
     document.title = 'CDM - Publicaciones'
-    console.log(routerFeed.asPath, routerFeed.route, routerFeed.isReady)
     if (routerFeed.isReady) {
       const defaultQuery = query || 1
       setQuerySuccess(false)

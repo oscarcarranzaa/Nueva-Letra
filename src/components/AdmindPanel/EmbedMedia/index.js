@@ -24,7 +24,6 @@ export default function EmbedMedia({ embedData }) {
   ) : null
   const noEmbed =
     valueEmbed === undefined || valueEmbed === '' ? <NoEmbed /> : null
-  console.log(valueEmbed)
   const innerEmbed = () => {
     return { __html: valueEmbed }
   }

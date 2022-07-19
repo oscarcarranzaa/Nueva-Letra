@@ -29,7 +29,7 @@ export default function EditPublish() {
   const send = (e) => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
-    console.log(data)
+
     const { publicar, eliminar } = data
     const isValidDates = useValidateDate(publicar, eliminar)
     if (
@@ -52,9 +52,6 @@ export default function EditPublish() {
           refElement.current.innerHTML = 'Guardar'
           setSave(true)
           closeNotification()
-        })
-        .catch((err) => {
-          console.log(err)
         })
     }
   }

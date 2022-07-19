@@ -52,9 +52,7 @@ export default function News({ data }) {
               <div
                 type="button"
                 className="absolute top-0 right-0 mt-2 mr-2"
-                onClick={() => {
-                  console.log('delete')
-                }}
+                onClick={() => {}}
               >
                 <PublishMedia url={URL} short={true} />
               </div>

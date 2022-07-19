@@ -29,11 +29,10 @@ export default function Dash() {
       })
         .then((res) => {
           setFeedPublish(res.data)
-          console.log(res)
+
           setQuerySuccess(true)
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
           setQuerySuccess(false)
         })
     }
@@ -64,7 +63,6 @@ export default function Dash() {
 }
 export async function getServerSideProps(context) {
   const token = context.req.cookies.updateToken
-  console.log(token)
   if (!token) {
     return {
       redirect: {

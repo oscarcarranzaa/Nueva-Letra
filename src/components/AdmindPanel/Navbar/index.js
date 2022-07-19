@@ -29,7 +29,7 @@ export default function AdminNavbar() {
     setOpen(!profileOpen)
   }
   const ArrowDown = profileOpen ? 'rotate-180' : ''
-  console.log(openMenu)
+
   return (
     <>
       <header
