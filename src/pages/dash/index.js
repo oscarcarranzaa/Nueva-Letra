@@ -2,6 +2,7 @@ import axios from 'axios'
 import Layout from 'components/AdmindPanel/Layout'
 import LoaderNews from 'components/AdmindPanel/News/LoaderNews'
 import MinimalLoader from 'components/Loader'
+import useAuthDash from 'hooks/useAuthFetch'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
@@ -16,18 +17,27 @@ const DynamicPublishItems = dynamic(
 export default function Dash() {
   const [feedPublish, setFeedPublish] = useState()
   const [querySuccess, setQuerySuccess] = useState(false)
+  const { token } = useAuthDash()
   useEffect(() => {
-    document.title = 'CDM - Dashboard'
-    axios
-      .get(`/news?limit=${limitNews}`)
-      .then((res) => {
-        setFeedPublish(res.data)
-        setQuerySuccess(true)
+    if (token) {
+      axios({
+        method: 'GET',
+        url: '/news?limit=4',
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
       })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+        .then((res) => {
+          setFeedPublish(res.data)
+          console.log(res)
+          setQuerySuccess(true)
+        })
+        .catch((err) => {
+          console.log(err)
+          setQuerySuccess(false)
+        })
+    }
+  }, [token])
   const publishItems = querySuccess ? (
     <DynamicPublishItems data={feedPublish} />
   ) : (
@@ -51,4 +61,19 @@ export default function Dash() {
       </Layout>
     </>
   )
+}
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.updateToken
+  console.log(token)
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/dash/login',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: { message: 'holsa' }
+  }
 }

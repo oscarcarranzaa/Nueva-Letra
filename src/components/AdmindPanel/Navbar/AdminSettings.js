@@ -1,5 +1,17 @@
+import axios from 'axios'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 export default function AdminSetting() {
+  const Router = useRouter()
+  const singOut = () => {
+    axios({
+      method: 'GET',
+      url: '/auth/logout',
+      withCredentials: true
+    }).then((res) => {
+      Router.push('/dash/login')
+    })
+  }
   return (
     <>
       <div className="absolute top-12 bg-zinc-900 border border-white rounded-md w-52 right-0 z-10">
@@ -15,7 +27,11 @@ export default function AdminSetting() {
         <ul className=" mt-5 mb-5">
           <li className="p-1 pl-3 hover:bg-sky-600">Perfil</li>
           <li className="p-1 pl-3 hover:bg-sky-600">Propiedades</li>
-          <li className="p-1 pl-3 hover:bg-sky-600">Cerrar sesion</li>
+          <li className="p-1 pl-3 hover:bg-sky-600">
+            <button type="button" onClick={singOut}>
+              Cerrar sesion
+            </button>
+          </li>
         </ul>
       </div>
     </>

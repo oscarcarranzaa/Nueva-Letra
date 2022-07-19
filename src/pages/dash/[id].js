@@ -9,6 +9,7 @@ import useValidateDate from 'hooks/useValidateDate'
 import Layout from 'components/AdmindPanel/Layout'
 import LoaderFull from 'components/AdmindPanel/LoaderFull'
 import InputTitle from 'components/AdmindPanel/Input/InputTitle'
+import useAuthDash from 'hooks/useAuthFetch'
 
 const DynamicContent = dynamic(() => import('components/AdmindPanel/Content'), {
   ssr: false
@@ -27,8 +28,10 @@ export default function EditPublish() {
   const [publishData, setPublishData] = useState([])
   const [querySucces, setQuerySucces] = useState(false)
   const [save, setSave] = useState(false)
+
+  const { token } = useAuthDash()
   useEffect(() => {
-    if (ObtainID.isReady) {
+    if (ObtainID.isReady && token) {
       fetch(`http://localhost:4000/api/v1/news/${ID}`).then((res) => {
         res.json().then((data) => {
           if (data.id === undefined) {
@@ -44,7 +47,7 @@ export default function EditPublish() {
         }
       })
     }
-  }, [ID, save])
+  }, [ID, save, token])
 
   const refElement = useRef()
   const send = (e) => {
@@ -94,7 +97,6 @@ export default function EditPublish() {
   const notification = save ? (
     <Notification message="Guardado correctamente" />
   ) : null
-
   return (
     <>
       <Layout>
@@ -135,4 +137,19 @@ export default function EditPublish() {
       </Layout>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.updateToken
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/dash/login',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {}
+  }
 }

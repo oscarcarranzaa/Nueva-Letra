@@ -1,12 +1,9 @@
 import axios from 'axios'
-import CheckSVG from 'components/icons/Check'
-import ClockSVG from 'components/Icons/Clock'
 import Close from 'components/Icons/Close'
 import EyeSVG from 'components/Icons/Eye'
 import EyeInvisibleSVG from 'components/Icons/EyeInvisible'
-import PinnedSVG from 'components/Icons/Pinned'
-import PinnedSlash from 'components/Icons/PinnedSlash'
 import isValidEmail from 'hooks/useValidEmail'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import styles from 'styles/login.module.css'
 
@@ -16,7 +13,7 @@ export default function Login() {
   const [pass, setPass] = useState('')
   const [validPass, setValidPass] = useState(true)
   const [watchPass, setWatchPass] = useState(false)
-
+  const Router = useRouter()
   const validateEmail = (email) => {
     const validate = isValidEmail(email)
     setValidEmail(validate)
@@ -26,7 +23,21 @@ export default function Login() {
     const validateEmail = isValidEmail(email)
     console.log(validEmail)
     if (validateEmail && pass.length > 4) {
-      console.log('enviando datos...')
+      const credentials = { email, password: pass }
+      axios({
+        method: 'POST',
+        url: '/auth/login',
+        data: credentials,
+        withCredentials: true
+      })
+        .then((res) => {
+          console.log(res.data)
+          Router.push('/dash')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      console.log(credentials)
     } else {
       console.log('aliña bien eso boludo')
     }
