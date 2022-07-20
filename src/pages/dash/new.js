@@ -23,8 +23,8 @@ const DynamicTextEditor = dynamic(
 
 export default function EditPublish() {
   const [save, setSave] = useState(false)
-  const ObtainID = useRouter()
-  const back = () => ObtainID.back()
+  const Router = useRouter()
+  const back = () => Router.back()
   const { token } = useAuthDash()
   const send = (e) => {
     e.preventDefault()
@@ -36,6 +36,7 @@ export default function EditPublish() {
       eliminar === undefined ||
       isValidDates === true
     ) {
+      console.log(data)
       setSave(true)
       axios({
         method: 'POST',
@@ -46,7 +47,8 @@ export default function EditPublish() {
         },
         data
       }).then((res) => {
-        setSave(false)
+        const id = res.data.id
+        Router.push(`/dash/${id}`)
       })
     }
   }

@@ -5,7 +5,7 @@ import TwitterSVG from 'components/Icons/twitter'
 import CopyLink from 'components/AdmindPanel/Share/CopyLink'
 
 export default function LinkShare({ shareClose, url }) {
-  const iconSize = 62
+  const iconSize = 48
   return (
     <div className="bg-zinc-700 block z-30 absolute">
       <div className="p-3">

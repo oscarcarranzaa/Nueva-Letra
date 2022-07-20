@@ -26,7 +26,7 @@ export default function CopyLink({ id }) {
             className="hidden"
             ref={refInput}
           />
-          <a href={id} target0="_blank" rel="noreferrer" className="">
+          <a href={id} target="_blank" rel="noreferrer" className="">
             {id}
           </a>
         </div>

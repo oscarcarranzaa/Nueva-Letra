@@ -17,6 +17,7 @@ export default function TextArea({ dataText, name }) {
           onChange={handleChange}
           value={valueDescription}
           name={name}
+          required
         ></textarea>
       </div>
     </>

@@ -1,10 +1,13 @@
 import PublishMedia from '../PublishMedia'
 import useFormat from 'hooks/useFormat'
 import useFormatDate from 'hooks/useFormatDate'
+import useCategoryID from 'hooks/useCategoryID'
 
 export default function Information({ idNews }) {
   const PathURL = idNews.title === undefined ? '' : useFormat(idNews.title)
-  const URL = `http://localhost:3000/${idNews.category}/${PathURL}_${idNews.id}`
+  const category = useCategoryID(idNews.category_code)
+  const categoryValue = category ? category[0].value : 'category'
+  const URL = `http://localhost:3000/${categoryValue}/${PathURL}_${idNews.id}`
   const createDate = idNews.createdAt
   const publishCreateDate = useFormatDate(
     createDate,

@@ -15,9 +15,10 @@ export default function News({ data }) {
           const formatTime = useFormatDate(publish.createdAt, false, '', true)
           const PathURL =
             publish.title === undefined ? '' : useFormat(publish.title)
-          const URL = `http://localhost:3000/${publish.category}/${PathURL}_${publish.id}`
           const category = useCategoryID(publish.category_code)
           const categoryName = category[0].name
+          const categoryValue = category[0].value
+          const URL = `http://localhost:3000/${categoryValue}/${PathURL}_${publish.id}`
           return (
             <div
               key={publish.id}
