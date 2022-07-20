@@ -116,3 +116,17 @@ export default function Login() {
     </>
   )
 }
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.updateToken
+  if (token) {
+    return {
+      redirect: {
+        destination: '/dash',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {}
+  }
+}

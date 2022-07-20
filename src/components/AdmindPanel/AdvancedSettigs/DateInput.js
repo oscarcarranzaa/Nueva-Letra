@@ -6,7 +6,7 @@ import WarnSVG from 'components/Icons/Warn'
 
 export default function DateInput({ action, dateValidation, valid }) {
   const [data, setData] = useState(true)
-  const [utcDate, seUtcDate] = useState(true)
+  const [utcDate, seUtcDate] = useState(false)
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [dateComplete, setDateComplete] = useState(null)

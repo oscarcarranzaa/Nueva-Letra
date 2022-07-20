@@ -1,37 +1,33 @@
 import { useState, useEffect } from 'react'
 import MinimalLoader from 'components/Loader'
 import axios from 'axios'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Layout from 'components/AdmindPanel/Layout'
 import LoaderNews from 'components/AdmindPanel/News/LoaderNews'
+import useAuthDash from 'hooks/useAuthFetch'
+import News from 'components/AdmindPanel/News'
+import Pagination from 'components/AdmindPanel/Pagination'
 
-const limitNews = 12
-const DynamicPublishItems = dynamic(
-  () => import('components/AdmindPanel/News'),
-  {
-    ssr: false,
-    loading: () => <LoaderNews limits={limitNews} />
-  }
-)
-const DynamicPagination = dynamic(
-  () => import('components/AdmindPanel/Pagination'),
-  {
-    ssr: false
-  }
-)
 export default function published() {
   const [feedPublish, setFeedPublish] = useState()
   const [querySuccess, setQuerySuccess] = useState(false)
   const routerFeed = useRouter()
   const query = routerFeed.query.p
+
+  const limitNews = 12
+  const { token } = useAuthDash()
   useEffect(() => {
     document.title = 'CDM - Publicaciones'
-    if (routerFeed.isReady) {
+    if (routerFeed.isReady && token) {
       const defaultQuery = query || 1
       setQuerySuccess(false)
-      axios
-        .get(`/news?limit=12&p=${defaultQuery}`)
+      axios({
+        method: 'GET',
+        url: `/news?limit=${limitNews}&p=${defaultQuery}`,
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
         .then((res) => {
           setFeedPublish(res.data)
           setQuerySuccess(true)
@@ -40,20 +36,27 @@ export default function published() {
           console.log(err)
         })
     }
-  }, [query])
-  const publishItems = querySuccess ? (
-    <DynamicPublishItems data={feedPublish} />
-  ) : (
-    <LoaderNews limits={limitNews} />
-  )
-  const pagination = querySuccess ? (
-    <DynamicPagination data={feedPublish} />
-  ) : null
+  }, [query, token])
   return (
     <Layout>
       <MinimalLoader succes={querySuccess} />
-      {publishItems}
-      {pagination}
+      {!querySuccess && <LoaderNews limits={limitNews} />}
+      {feedPublish && <News data={feedPublish} />}
+      {feedPublish && <Pagination data={feedPublish} />}
     </Layout>
   )
+}
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.updateToken
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/dash/login',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {}
+  }
 }

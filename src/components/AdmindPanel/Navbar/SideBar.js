@@ -37,7 +37,7 @@ export default function AdminSidebar({ open }) {
     {
       id: 5,
       title: 'Reciclaje',
-      href: 'recycle',
+      href: '/dash',
       svg: <RecycleSVG size={24} fill="#fff" />
     }
   ]

@@ -1,23 +1,17 @@
 import axios from 'axios'
 import Layout from 'components/AdmindPanel/Layout'
+import News from 'components/AdmindPanel/News'
 import LoaderNews from 'components/AdmindPanel/News/LoaderNews'
 import MinimalLoader from 'components/Loader'
 import useAuthDash from 'hooks/useAuthFetch'
-import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
-const limitNews = 4
-const DynamicPublishItems = dynamic(
-  () => import('components/AdmindPanel/News'),
-  {
-    ssr: false,
-    loading: () => <LoaderNews limits={limitNews} />
-  }
-)
 export default function Dash() {
   const [feedPublish, setFeedPublish] = useState()
   const [querySuccess, setQuerySuccess] = useState(false)
+
   const { token } = useAuthDash()
+  const limitNews = 4
   useEffect(() => {
     if (token) {
       axios({
@@ -37,11 +31,6 @@ export default function Dash() {
         })
     }
   }, [token])
-  const publishItems = querySuccess ? (
-    <DynamicPublishItems data={feedPublish} />
-  ) : (
-    <LoaderNews limits={limitNews} />
-  )
   return (
     <>
       <Layout>
@@ -56,7 +45,8 @@ export default function Dash() {
             Publicaciones Recientes
           </h4>
         </div>
-        {publishItems}
+        {!querySuccess && <LoaderNews limits={limitNews} />}
+        {feedPublish && <News data={feedPublish} />}
       </Layout>
     </>
   )
@@ -72,6 +62,6 @@ export async function getServerSideProps(context) {
     }
   }
   return {
-    props: { message: 'holsa' }
+    props: {}
   }
 }

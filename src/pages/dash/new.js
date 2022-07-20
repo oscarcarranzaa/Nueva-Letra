@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import useValidateDate from 'hooks/useValidateDate'
 import styles from 'styles/styles.module.css'
 import dynamic from 'next/dynamic'
@@ -7,11 +7,11 @@ import axios from 'axios'
 import Data from 'components/AdmindPanel/Data'
 import InputTitle from 'components/AdmindPanel/Input/InputTitle'
 import Arrow from 'components/Icons/Arrow'
-import Notification from 'components/AdmindPanel/Notification'
 import TextArea from 'components/AdmindPanel/Input/TextArea'
 import EmbedMedia from 'components/AdmindPanel/EmbedMedia'
 import Layout from 'components/AdmindPanel/Layout'
 import EditorLoader from 'components/AdmindPanel/TextEditor/EditorLoader'
+import useAuthDash from 'hooks/useAuthFetch'
 
 const DynamicTextEditor = dynamic(
   () => import('components/AdmindPanel/TextEditor'),
@@ -24,12 +24,11 @@ const DynamicTextEditor = dynamic(
 export default function EditPublish() {
   const [save, setSave] = useState(false)
   const ObtainID = useRouter()
-  const refElement = useRef()
   const back = () => ObtainID.back()
+  const { token } = useAuthDash()
   const send = (e) => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
-
     const { publicar, eliminar } = data
     const isValidDates = useValidateDate(publicar, eliminar)
     if (
@@ -37,29 +36,20 @@ export default function EditPublish() {
       eliminar === undefined ||
       isValidDates === true
     ) {
-      refElement.current.setAttribute('disabled', true)
-      refElement.current.classList.add(styles.disabledButton)
-      refElement.current.innerHTML = `<div class=${styles.loaderSave}></div>`
-      axios
-        .post('/news', data, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then((res) => {
-          refElement.current.removeAttribute('disabled')
-          refElement.current.classList.remove(styles.disabledButton)
-          refElement.current.innerHTML = 'Guardar'
-          setSave(true)
-          closeNotification()
-        })
+      setSave(true)
+      axios({
+        method: 'POST',
+        url: '/news',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'multipart/form-data'
+        },
+        data
+      }).then((res) => {
+        setSave(false)
+      })
     }
   }
-  const closeNotification = () => {
-    const time = setTimeout(() => setSave(false), 3500)
-    return () => clearTimeout(time)
-  }
-  const notification = save ? <Notification message="Guardado" /> : null
 
   return (
     <>
@@ -75,10 +65,14 @@ export default function EditPublish() {
             <InputTitle />
             <button
               type="submit"
-              className={styles.buttonSave}
-              ref={refElement}
+              className={`${styles.buttonSave} ${
+                save ? 'cursor-not-allowed' : ''
+              }`}
+              disabled={save}
             >
-              Guardar
+              <div className={save ? styles.loaderSave : ''}>
+                {save ? '' : 'Guardar'}
+              </div>
             </button>
           </div>
           <div className={styles.monitorDash}>
@@ -97,10 +91,24 @@ export default function EditPublish() {
             </div>
           </div>
         </form>
-        <div className={`${styles.notificationClose} fixed bottom-5 right-5 `}>
-          {notification}
-        </div>
+        <div
+          className={`${styles.notificationClose} fixed bottom-5 right-5 `}
+        ></div>
       </Layout>
     </>
   )
+}
+export async function getServerSideProps(context) {
+  const token = context.req.cookies.updateToken
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/dash/login',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {}
+  }
 }
