@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 
 export default function K({ data, id, pin }) {
   const News = data
+  console.log(data.image)
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name

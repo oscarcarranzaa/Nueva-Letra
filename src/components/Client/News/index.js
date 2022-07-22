@@ -28,7 +28,7 @@ export default function NewsData({ news }) {
             <a className={styles.linkNews}>
               <figure className={styles.figureImage}>
                 <Image
-                  src={res.image}
+                  src={res.images[0].src}
                   width={150}
                   height={100}
                   layout="responsive"
