@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import useCategoryID from 'hooks/useCategoryID'
 import useFormat from 'hooks/useFormat'
+import Img from 'components/Img'
 
 export default function NewsHome({ data }) {
   return (
@@ -23,12 +23,11 @@ export default function NewsHome({ data }) {
             >
               <a className={`${lastNewsBig} hover:text-sky-600`}>
                 <figure className="aspect-video block">
-                  <Image
-                    src={news.image}
-                    width={160}
-                    height={100}
-                    layout="responsive"
-                    objectFit="cover"
+                  <Img
+                    src={news.images}
+                    width={720}
+                    height={500}
+                    layout="auto"
                     alt={news.title}
                   />
                 </figure>

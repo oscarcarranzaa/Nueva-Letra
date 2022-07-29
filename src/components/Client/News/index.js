@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import useCategoryID from 'hooks/useCategoryID'
 import useFormatDate from 'hooks/useFormatDate'
 import styles from './News.module.css'
 import useFormat from 'hooks/useFormat'
+import Img from 'components/Img'
 
 export default function NewsData({ news }) {
   return (
@@ -27,12 +27,12 @@ export default function NewsData({ news }) {
           >
             <a className={styles.linkNews}>
               <figure className={styles.figureImage}>
-                <Image
-                  src={res.images[0].src}
-                  width={150}
-                  height={100}
+                <Img
+                  src={res.images}
+                  alt={res.title}
                   layout="responsive"
-                  objectFit="cover"
+                  width={200}
+                  height={140}
                 />
               </figure>
               <p className="text-sm md:text-base font-semibold line-clamp-2 ">

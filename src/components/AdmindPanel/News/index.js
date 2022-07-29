@@ -3,8 +3,8 @@ import useFormatDate from 'hooks/useFormatDate'
 import Link from 'next/link'
 import useFormat from 'hooks/useFormat'
 import PublishMedia from '../PublishMedia'
-import Image from 'next/image'
 import useCategoryID from 'hooks/useCategoryID'
+import Img from 'components/Img'
 
 export default function News({ data }) {
   const news = data.response.metadata
@@ -27,13 +27,12 @@ export default function News({ data }) {
               <Link href="/dash/[id]" as={`/dash/${publish.id}`}>
                 <a className="h-full block p-2">
                   <figure className="w-full">
-                    <Image
-                      width={300}
-                      height={200}
-                      objectFit="cover"
-                      layout="responsive"
+                    <Img
+                      width={500}
+                      height={330}
+                      layout="auto"
                       lazyRoot={false}
-                      src={publish.image}
+                      src={publish.images}
                       className="w-full bg-gray-400 aspect-video object-cover"
                     />
                   </figure>

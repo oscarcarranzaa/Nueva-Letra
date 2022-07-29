@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import axios from 'axios'
 import CategoryTitle from 'components/Client/CategoryTitle'
 import Layout from 'components/Client/Layout'
@@ -8,14 +9,12 @@ import ShareNews from 'components/Client/Share'
 import SideNews from 'components/Client/SideNews'
 import Tags from 'components/Client/Tags'
 import PinnedSVG from 'components/Icons/Pinned'
+import Img from 'components/Img'
 import useCategoryID from 'hooks/useCategoryID'
 import useFetch from 'hooks/useFetch'
-import Image from 'next/image'
-import { useEffect } from 'react'
 
 export default function K({ data, id, pin }) {
   const News = data
-  console.log(data.image)
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name
@@ -46,14 +45,13 @@ export default function K({ data, id, pin }) {
             <h4 className="font-serif text-slate-800">{News.description}</h4>
             <ShareNews url={url} />
             <figure className="block">
-              <Image
-                src={News.image}
-                width={150}
-                height={100}
-                objectFit="cover"
+              <Img
+                src={data.images}
                 layout="responsive"
-                alt={News.title}
-              ></Image>
+                width={1280}
+                height={720}
+                alt={data.title}
+              ></Img>
             </figure>
             <hr className="mt-3" />
             <div className="mt-3 flex flex-col">

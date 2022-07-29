@@ -2,6 +2,7 @@ import Edit from 'components/Icons/Edit'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Close from 'components/Icons/Close'
+import Img from 'components/Img'
 const DynamicInputImage = dynamic(() => import('./SaveImage'), {
   ssr: false,
   loading: () => <div className="h-full w-full bg-gray-400"></div>
@@ -16,10 +17,12 @@ export default function ImageData({ img, action }) {
 
   return (
     <>
-      <div className="relative w-12/12 h-60">
-        <img
+      <div className="relative">
+        <Img
           src={img}
-          layout="responsive"
+          width={500}
+          height={330}
+          layout="auto"
           className="bg-gray-400 object-contain w-full h-full"
         />
         <div className="absolute top-0 h-full w-full   bg-black-5 md:opacity-0 md:hover:opacity-100 flex justify-center items-center">

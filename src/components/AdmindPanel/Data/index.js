@@ -49,7 +49,7 @@ export default function Data({ dataNews, act }) {
         <div className={`${styles.slideContent} ${configElemet} mt-5`}>
           <div className={styles.slideGeneral}>
             <div className="bg-gray-400 w-full">
-              <ImageData img={img} action={act} />
+              <ImageData img={data.images} action={act} />
             </div>
             <div className="flex mt-2">
               <div className="flex flex-col items-center mr-3">

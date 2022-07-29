@@ -1,6 +1,5 @@
 import useCategoryID from 'hooks/useCategoryID'
 import useFormat from 'hooks/useFormat'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function SideNews({ data }) {
@@ -10,6 +9,7 @@ export default function SideNews({ data }) {
         const titleUrl = useFormat(res.title)
         const category = useCategoryID(res.category_code)
         const categoryValue = category[0].value
+        const image = res.images.filter((w) => w.width === 320)[0]
         return (
           <Link
             href={'/[category]/[id]'}
@@ -18,13 +18,7 @@ export default function SideNews({ data }) {
           >
             <a className="flex gap-1 bg-slate-200 p-1 rounded hover:underline">
               <div className="w-5/12 block">
-                <Image
-                  src={res.image}
-                  width={170}
-                  height={100}
-                  layout="responsive"
-                  objectFit="cover"
-                ></Image>
+                <img src={image.src} decoding="async" />
               </div>
               <div className="w-7/12">
                 <p className="text-sm font-bold underline">{res.id}</p>
