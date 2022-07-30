@@ -9,6 +9,7 @@ import PinnedSlash from 'components/Icons/PinnedSlash'
 import WarnSVG from 'components/Icons/Warn'
 
 export default function Data({ dataNews, act }) {
+  console.log(dataNews)
   const [pinned, setPinned] = useState(dataNews.pinned)
   const [sensitive, setSensitive] = useState(dataNews.sensitive)
   const [data, setData] = useState([])
@@ -49,7 +50,7 @@ export default function Data({ dataNews, act }) {
         <div className={`${styles.slideContent} ${configElemet} mt-5`}>
           <div className={styles.slideGeneral}>
             <div className="bg-gray-400 w-full">
-              <ImageData img={data.images} action={act} />
+              <ImageData img={dataNews.images} action={act} />
             </div>
             <div className="flex mt-2">
               <div className="flex flex-col items-center mr-3">
