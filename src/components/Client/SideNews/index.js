@@ -1,12 +1,12 @@
 import useCategoryID from 'hooks/useCategoryID'
-import useFormat from 'hooks/useFormat'
+import slugify from 'slugify'
 import Link from 'next/link'
 
 export default function SideNews({ data }) {
   return (
     <>
       {data.map((res) => {
-        const titleUrl = useFormat(res.title)
+        const titleUrl = slugify(res.title, { lower: true })
         const category = useCategoryID(res.category_code)
         const categoryValue = category[0].value
         const image = res.images.filter((w) => w.width === 320)[0]

@@ -1,7 +1,6 @@
-import useFormatDate from 'hooks/useFormatDate'
-
 import Link from 'next/link'
-import useFormat from 'hooks/useFormat'
+import useFormatDate from 'hooks/useFormatDate'
+import slugify from 'slugify'
 import PublishMedia from '../PublishMedia'
 import useCategoryID from 'hooks/useCategoryID'
 import Img from 'components/Img'
@@ -14,7 +13,9 @@ export default function News({ data }) {
         {news.map((publish) => {
           const formatTime = useFormatDate(publish.createdAt, false, '', true)
           const PathURL =
-            publish.title === undefined ? '' : useFormat(publish.title)
+            publish.title === undefined
+              ? ''
+              : slugify(publish.title, { lower: true })
           const category = useCategoryID(publish.category_code)
           const categoryName = category[0].name
           const categoryValue = category[0].value

@@ -1,10 +1,11 @@
 import PublishMedia from '../PublishMedia'
-import useFormat from 'hooks/useFormat'
+import slugify from 'slugify'
 import useFormatDate from 'hooks/useFormatDate'
 import useCategoryID from 'hooks/useCategoryID'
 
 export default function Information({ idNews }) {
-  const PathURL = idNews.title === undefined ? '' : useFormat(idNews.title)
+  const PathURL =
+    idNews.title === undefined ? '' : slugify(idNews.title, { lower: true })
   const category = useCategoryID(idNews.category_code)
   const categoryValue = category ? category[0].value : 'category'
   const URL = `http://localhost:3000/${categoryValue}/${PathURL}_${idNews.id}`

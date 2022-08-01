@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import useCategoryID from 'hooks/useCategoryID'
-import useFormat from 'hooks/useFormat'
+import slugify from 'slugify'
 import Img from 'components/Img'
 
 export default function NewsHome({ data }) {
@@ -14,7 +14,7 @@ export default function NewsHome({ data }) {
               : 'col-span-1 col-row-2 md:col-span-1 md:col-row-1'
           const category = useCategoryID(news.category_code)
           const categoryValue = category[0].value
-          const urlNews = useFormat(news.title)
+          const urlNews = slugify(news.title, { lower: true })
           return (
             <Link
               key={news.id}
