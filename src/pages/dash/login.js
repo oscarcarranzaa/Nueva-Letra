@@ -67,10 +67,11 @@ export default function Login() {
             <Link href={'/'}>
               <a>
                 <Image
-                  src={'/static/images/CDM_logo.png'}
-                  width={100}
-                  height={50}
-                  objectFit="cover"
+                  src={'/static/images/logo.png'}
+                  width={90}
+                  height={60}
+                  objectFit="intrinsic"
+                  alt="Nueva letra logo"
                 ></Image>
               </a>
             </Link>

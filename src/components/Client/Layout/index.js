@@ -27,7 +27,7 @@ export default function Layout({
         <meta property="og:description" content={description}></meta>
         <meta property="og:image" content={image}></meta>
         <meta property="og:image:type" content="image/jpg"></meta>
-        <meta property="og:url" content="https://www.cdmnoticias.com"></meta>
+        <meta property="og:url" content="https://www.nuevaletra.com"></meta>
         <meta property="og:locale" content="es_HN"></meta>
         <meta property="fb:app_id" content="fbid"></meta>
         <meta property="fb:pages" content="fbid"></meta>
@@ -42,6 +42,7 @@ export default function Layout({
         <meta name="twitter:title" content={title}></meta>
         <meta name="twitter:description" content={description}></meta>
         <meta name="twitter:image:src" content={image}></meta>
+        <link rel="favicon" href="/static/images/NL-logo.svg" />
       </Head>
       <Navbar />
       <main className="p-3 md:p-5">{children}</main>
@@ -50,8 +51,8 @@ export default function Layout({
   )
 }
 Layout.defaultProps = {
-  title: 'CDM Noticias',
+  title: 'Nueva letra - Noticias',
   description: 'Medio de noticias hondureñas',
   image: '/static/images/CDM_logo.png',
-  keywords: 'Noticias Honduras, CDM noticias, viral honduras, politica'
+  keywords: 'Noticias Honduras, Nueva Letra, viral honduras, politica'
 }

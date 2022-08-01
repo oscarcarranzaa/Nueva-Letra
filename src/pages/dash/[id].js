@@ -15,7 +15,7 @@ import Data from 'components/AdmindPanel/Data'
 export default function EditPublish() {
   const Router = useRouter()
   const ID = Router.query.id
-  const [publishData, setPublishData] = useState([])
+  const [publishData, setPublishData] = useState(false)
   const [querySucces, setQuerySucces] = useState(false)
   const [save, setSave] = useState(false)
 

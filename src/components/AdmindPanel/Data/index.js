@@ -1,5 +1,5 @@
 import ImageData from '../UpdateImage'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import CategoryData from './CategoryData'
 import Tags from '../Tags'
 import styles from 'styles/styles.module.css'
@@ -9,20 +9,16 @@ import PinnedSlash from 'components/Icons/PinnedSlash'
 import WarnSVG from 'components/Icons/Warn'
 
 export default function Data({ dataNews, act }) {
-  console.log(dataNews)
+  const data = dataNews
+  console.log(data.images)
   const [pinned, setPinned] = useState(dataNews.pinned)
   const [sensitive, setSensitive] = useState(dataNews.sensitive)
-  const [data, setData] = useState([])
   const [config, setConfig] = useState(false)
   const configElemet = config ? styles.slideRight : styles.slideLeft
   const selectLeft = !config ? styles.slideBorder : ''
   const selectRight = config ? styles.slideBorder : ''
   const viewConfig = () => setConfig(true)
   const hiddeConfig = () => setConfig(false)
-  useEffect(() => {
-    setData(dataNews)
-  }, [dataNews])
-
   const img = data.image || '/'
   const pinneStyle = pinned ? 'bg-sky-600' : 'bg-transparent hover:bg-blue-900'
   const sensitiveStyle = sensitive

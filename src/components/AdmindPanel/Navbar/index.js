@@ -48,10 +48,11 @@ export default function AdminNavbar() {
               <Link href="/dash">
                 <a>
                   <Image
-                    src="/static/images/CDM_logo.png"
-                    width={100}
-                    height={50}
-                    layout="responsive"
+                    src="/static/images/NL-logo.svg"
+                    width={60}
+                    height={60}
+                    layout="intrinsic"
+                    alt="Nueva letra logo"
                   />
                 </a>
               </Link>

@@ -5,7 +5,7 @@ import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Categories from './categories'
 import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
@@ -45,10 +45,11 @@ export default function Navbar() {
             <Link href={'/'}>
               <a>
                 <Image
-                  src={'/static/images/CDM_logo.png'}
-                  width={100}
-                  height={55}
+                  src={'/static/images/logo.png'}
+                  width={90}
+                  height={60}
                   layout="intrinsic"
+                  alt="Nueva letra logo"
                 ></Image>
               </a>
             </Link>

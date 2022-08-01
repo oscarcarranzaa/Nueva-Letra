@@ -1,13 +1,12 @@
 .linkNews{
   padding: 4px 4px;
-  border-radius: 3px;
   background-color: rgb(230, 230, 230);
   border: 2px solid transparent;
   transition: transform .2s linear;
+  border: 1px solid transparent;
 }
 .linkNews:hover{
   border: 1px solid var(--color-primary);
-  transform: scale(1.02);
 }
 .figureImage{
   display: block;

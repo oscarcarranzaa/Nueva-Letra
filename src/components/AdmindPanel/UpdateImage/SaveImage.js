@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 
-export default function SaveImage() {
+export default function SaveImage({ action }) {
   const [image, setImage] = useState('/upload-small.svg')
   const refElement = useRef()
   const handleClick = () => refElement.current.click()
@@ -18,13 +18,17 @@ export default function SaveImage() {
   }
   return (
     <>
-      <div className="absolute top-0 z-5 w-full h-full bg-zinc-800 flex justify-center">
+      <div
+        className={`z-5 w-full h-full bg-zinc-800 flex justify-center ${
+          action === 'new' ? '' : 'absolute top-0 w-full h-full'
+        }`}
+      >
         <Image
           src={image}
           className="h-full w-full fill-sky-600"
           height={300}
           width={500}
-          objectFit="contain"
+          objectFit="cover"
         />
         <div
           className="absolute bottom-1 p-1 pl-2 pr-2 rounded-lg hover:cursor-pointer bg-sky-600 hover:bg-sky-700 text-normal"
