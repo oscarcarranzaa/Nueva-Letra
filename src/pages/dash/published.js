@@ -14,7 +14,7 @@ export default function published() {
   const routerFeed = useRouter()
   const query = routerFeed.query.p
 
-  const limitNews = 12
+  const limitNews = 1
   const { token } = useAuthDash()
   useEffect(() => {
     document.title = 'CDM - Publicaciones'

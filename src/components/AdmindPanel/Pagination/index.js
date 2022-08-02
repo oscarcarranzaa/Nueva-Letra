@@ -9,7 +9,7 @@ export default function Pagination({ data }) {
   const [prev, setPrev] = useState(false)
   const [next, setNext] = useState(false)
   const route = useRouter()
-  const pageQuery = route.query.p || 1
+  const pageQuery = Math.abs(route.query.p) || 1
   const totalPages = data.response.details.results
   const limit = data.response.details.limit
   const totalPaginates = Math.ceil(totalPages / limit)

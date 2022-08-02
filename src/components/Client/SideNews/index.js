@@ -1,6 +1,7 @@
 import useCategoryID from 'hooks/useCategoryID'
 import slugify from 'slugify'
 import Link from 'next/link'
+import Img from 'components/Img'
 
 export default function SideNews({ data }) {
   return (
@@ -9,7 +10,6 @@ export default function SideNews({ data }) {
         const titleUrl = slugify(res.title, { lower: true })
         const category = useCategoryID(res.category_code)
         const categoryValue = category[0].value
-        const image = res.images.filter((w) => w.width === 320)[0]
         return (
           <Link
             href={'/[category]/[id]'}
@@ -18,7 +18,12 @@ export default function SideNews({ data }) {
           >
             <a className="flex gap-1 bg-slate-200 p-1 rounded hover:underline">
               <div className="w-5/12 block">
-                <img src={image.src} decoding="async" />
+                <Img
+                  src={res.images}
+                  decoding="async"
+                  width={350}
+                  height={200}
+                />
               </div>
               <div className="w-7/12">
                 <p className="text-sm font-bold underline">{res.id}</p>

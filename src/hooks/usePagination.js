@@ -13,8 +13,10 @@ export default function usePagination(totalPaginates, thisPage, size) {
         thisPage >= totalPaginates - pages2
           ? thisPage - (totalPaginates - pages2)
           : 0
-      const nextPageFix = totalPaginates <= 4 ? 0 : nextPage
-      return thisPage - prevPage - 1 + i + 1 - nextPageFix + 1
+      const nextPageFix = totalPaginates < 5 ? 0 : nextPage
+      const rest = thisPage === 4 && nextPage === 2 ? 1 : 0
+      console.log(nextPageFix, nextPage)
+      return thisPage - prevPage - 1 + i + 1 - nextPageFix + 1 - rest
     })
   return pagesMap
 }
