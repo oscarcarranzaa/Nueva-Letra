@@ -19,7 +19,7 @@ export default function News({ data }) {
           const category = useCategoryID(publish.category_code)
           const categoryName = category[0].name
           const categoryValue = category[0].value
-          const URL = `http://localhost:3000/${categoryValue}/${PathURL}_${publish.id}`
+          const URL = `${process.env.DOMAIN}/${categoryValue}/${PathURL}_${publish.id}`
           return (
             <div
               key={publish.id}

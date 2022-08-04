@@ -90,7 +90,7 @@ export default function K({ data, id, pin }) {
 
 export async function getServerSideProps({ params }) {
   const { id } = params
-  const SERVER_URL = 'http://localhost:4000'
+  const SERVER_URL = process.env.BACKEND_API
   const idNews = id.split('_').reverse()[0]
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()

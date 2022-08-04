@@ -8,7 +8,7 @@ export default function Information({ idNews }) {
     idNews.title === undefined ? '' : slugify(idNews.title, { lower: true })
   const category = useCategoryID(idNews.category_code)
   const categoryValue = category ? category[0].value : 'category'
-  const URL = `http://localhost:3000/${categoryValue}/${PathURL}_${idNews.id}`
+  const URL = `${process.env.DOMAIN}/${categoryValue}/${PathURL}_${idNews.id}`
   const createDate = idNews.createdAt
   const publishCreateDate = useFormatDate(
     createDate,
