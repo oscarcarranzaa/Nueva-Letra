@@ -19,7 +19,6 @@ export default function Data({ dataNews, act }) {
   const selectRight = config ? styles.slideBorder : ''
   const viewConfig = () => setConfig(true)
   const hiddeConfig = () => setConfig(false)
-  const img = data.image || '/'
   const pinneStyle = pinned ? 'bg-sky-600' : 'bg-transparent hover:bg-blue-900'
   const sensitiveStyle = sensitive
     ? 'bg-yellow-500'
