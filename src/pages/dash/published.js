@@ -11,14 +11,14 @@ import Pagination from 'components/AdmindPanel/Pagination'
 export default function published() {
   const [feedPublish, setFeedPublish] = useState()
   const [querySuccess, setQuerySuccess] = useState(false)
-  const routerFeed = useRouter()
-  const query = routerFeed.query.p
+  const route = useRouter()
+  const query = route.query.p
 
-  const limitNews = 1
+  const limitNews = 8
   const { token } = useAuthDash()
   useEffect(() => {
     document.title = 'CDM - Publicaciones'
-    if (routerFeed.isReady && token) {
+    if (route.isReady && token) {
       const defaultQuery = query || 1
       setQuerySuccess(false)
       axios({
@@ -33,6 +33,7 @@ export default function published() {
           setQuerySuccess(true)
         })
         .catch((err) => {
+          route.push('/dash/404')
           console.log(err)
         })
     }

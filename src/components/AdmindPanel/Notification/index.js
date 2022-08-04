@@ -1,5 +1,3 @@
-import Close from 'components/Icons/Close'
-
 export default function Notification({ message }) {
   return (
     <>

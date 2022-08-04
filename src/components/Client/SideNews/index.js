@@ -26,7 +26,7 @@ export default function SideNews({ data }) {
                 />
               </div>
               <div className="w-7/12">
-                <p className="text-sm font-bold underline">{res.id}</p>
+                <p className="text-sm font-bold underline">{res.title}</p>
                 <p className="text-xs line-clamp-2 font-semibold lg:text-sm">
                   {res.title}
                 </p>
