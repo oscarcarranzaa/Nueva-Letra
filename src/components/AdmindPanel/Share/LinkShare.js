@@ -1,7 +1,7 @@
 import Close from 'components/Icons/Close'
 import FacebookSVG from 'components/Icons/Facebook'
 import InstagramSVG from 'components/Icons/Instagram'
-import TwitterSVG from 'components/Icons/twitter'
+import TwitterSVG from 'components/Icons/Twitter'
 import CopyLink from 'components/AdmindPanel/Share/CopyLink'
 
 export default function LinkShare({ shareClose, url }) {

@@ -9,7 +9,7 @@ import NewsData from 'components/Client/News'
 import Empty from 'components/Client/Empty'
 
 const DynamicPagination = dynamic(
-  () => import('components/client/Pagination'),
+  () => import('components/Client/Pagination'),
   {
     ssr: false
   }

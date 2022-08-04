@@ -1,6 +1,6 @@
 import FacebookSVG from 'components/Icons/Facebook'
 import InstagramSVG from 'components/Icons/Instagram'
-import TwitterSVG from 'components/Icons/twitter'
+import TwitterSVG from 'components/Icons/Twitter'
 import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
