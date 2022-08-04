@@ -3,7 +3,7 @@ import CopyLink from 'components/Icons/CopyLink'
 import FacebookSolid from 'components/Icons/FacebookSolid'
 import TwitterSolid from 'components/Icons/TwitterSolid'
 import WhatsappSolid from 'components/Icons/WhatsappSolid'
-import CheckSVG from 'components/icons/Check'
+import CheckSVG from 'components/Icons/Check'
 
 export default function ShareNews({ url }) {
   const refInput = useRef()

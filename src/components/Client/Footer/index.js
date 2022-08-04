@@ -3,7 +3,7 @@ import CallTelephone from 'components/Icons/CallTelephone'
 import FacebookSVG from 'components/Icons/Facebook'
 import InstagramSVG from 'components/Icons/Instagram'
 import LocationSVG from 'components/Icons/Location'
-import TwitterSVG from 'components/Icons/twitter'
+import TwitterSVG from 'components/Icons/Twitter'
 import YoutubeSVG from 'components/Icons/Youtube'
 import styles from './footer.module.css'
 

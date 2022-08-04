@@ -1,6 +1,6 @@
 import useFormatDate from 'hooks/useFormatDate'
 import { useState, useEffect } from 'react'
-import CheckSVG from 'components/icons/Check'
+import CheckSVG from 'components/Icons/Check'
 import styles from 'styles/styles.module.css'
 import WarnSVG from 'components/Icons/Warn'
 
