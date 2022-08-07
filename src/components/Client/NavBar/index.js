@@ -5,28 +5,52 @@ import YoutubeSVG from 'components/Icons/Youtube'
 import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Categories from './categories'
 import styles from './nav.module.css'
 import useFormatDate from 'hooks/useFormatDate'
 import TimeGet from './getTime'
 import { useRouter } from 'next/router'
 import BellSVG from 'components/Icons/Bell'
+import axios from 'axios'
 
 export default function Navbar() {
   const { query, pathname } = useRouter()
   const categoryQuery = query.category
   const [openMenu, setOpenMenu] = useState(false)
+  const [weather, setWeather] = useState(false)
+  const [weatherLoading, setWeatherLoading] = useState(true)
+
+  useEffect(() => {
+    setWeatherLoading(true)
+    axios
+      .get(
+        'https://api.weatherapi.com/v1/current.json?key=c717be88b1ac4840950215143220306&q=Choluteca&aqi=no'
+      )
+      .then((res) => {
+        setWeather(res.data)
+        setWeatherLoading(false)
+      })
+  }, [])
+  console.log(weather)
   const dateTime = useFormatDate('getObjectLocalTime')
   const categories = Categories()
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
   return (
     <>
       <div className="hidden justify-between md:flex">
-        <div>
+        <div className={weatherLoading ? 'opacity-0' : 'opacity-100'}>
           <div className="flex items-end">
-            <img src="/116.webp" alt="wheater" className="w-12" />
-            <p className="text-5xl font-bold">36</p>
+            {weather && (
+              <img
+                src={weather.current.condition.icon}
+                alt="wheater"
+                className="w-12"
+              />
+            )}
+            <p className="text-5xl font-bold">
+              {weather && weather.current.feelslike_c}
+            </p>
             <span className="text-base">°C</span>
           </div>
           <p className="text-sm text-center">Choluteca, HN</p>

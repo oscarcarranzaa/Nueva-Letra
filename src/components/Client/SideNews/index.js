@@ -16,7 +16,7 @@ export default function SideNews({ data }) {
             as={`/${categoryValue}/${titleUrl}_${res.id}`}
             key={res.id}
           >
-            <a className="flex gap-1 bg-slate-200 p-1 rounded hover:underline">
+            <a className="flex gap-1 bg-slate-200 p-1 rounded hover:underline hover:text-sky-700">
               <div className="w-5/12 block">
                 <Img
                   src={res.images}
@@ -26,9 +26,9 @@ export default function SideNews({ data }) {
                 />
               </div>
               <div className="w-7/12">
-                <p className="text-sm font-bold underline">{res.title}</p>
+                <p className="text-sm font-bold line-clamp-2">{res.title}</p>
                 <p className="text-xs line-clamp-2 font-semibold lg:text-sm">
-                  {res.title}
+                  {res.description}
                 </p>
               </div>
             </a>
