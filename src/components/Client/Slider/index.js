@@ -1,11 +1,11 @@
 import Slider from 'react-slick/lib/slider'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import Image from 'next/image'
+
 const settings = {
   dots: true,
   autoplay: true,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 5000,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -29,11 +29,11 @@ export default function SliderNews() {
   const images = [
     {
       id: 1,
-      img: '/static/images/apertura-banner.jpg'
+      img: 'https://i.ibb.co/DQsF2vD/1659907057440.jpg'
     },
     {
       id: 2,
-      img: '/static/images/haz-tu-denuncia.jpg'
+      img: 'https://i.ibb.co/55VRHdt/1659907098694.jpg'
     }
   ]
   return (
@@ -41,14 +41,7 @@ export default function SliderNews() {
       <Slider {...settings}>
         {images.map((image) => (
           <div key={image.id} className="relative block">
-            <Image
-              src={image.img}
-              alt={image.id}
-              layout="responsive"
-              objectFit="cover"
-              width="640"
-              height="360"
-            ></Image>
+            <img src={image.img} alt={image.id} />
           </div>
         ))}
       </Slider>
