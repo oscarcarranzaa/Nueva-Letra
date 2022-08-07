@@ -1,5 +1,4 @@
 import useFetch from 'hooks/useFetch'
-import Image from 'next/image'
 import NewsHome from '../NewsHome'
 import SectionTitle from '../SectionTitle'
 
@@ -14,11 +13,8 @@ export default function Empty() {
               Pronto agregaremos contenido para esta categoría
             </h3>
             <div className="flex justify-center mt-2">
-              <Image
-                src={'/static/images/this-is-fine.gif'}
-                width={300}
-                height={200}
-                objectFit="cover"
+              <img
+                src={'https://i.ibb.co/1ZWVy16/this-is-fine.gif'}
                 alt="Todo está bien"
               />
             </div>
