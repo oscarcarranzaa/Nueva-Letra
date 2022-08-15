@@ -49,7 +49,7 @@ export default function Navbar() {
               />
             )}
             <p className="text-5xl font-bold">
-              {weather && weather.current.feelslike_c}
+              {weather && weather.current.temp_c}
             </p>
             <span className="text-base">°C</span>
           </div>
