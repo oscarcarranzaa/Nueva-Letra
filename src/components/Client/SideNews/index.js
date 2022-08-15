@@ -5,7 +5,7 @@ import Img from 'components/Img'
 
 export default function SideNews({ data }) {
   return (
-    <>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
       {data.map((res) => {
         const titleUrl = slugify(res.title, { lower: true })
         const category = useCategoryID(res.category_code)
@@ -35,6 +35,6 @@ export default function SideNews({ data }) {
           </Link>
         )
       })}
-    </>
+    </div>
   )
 }

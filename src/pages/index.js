@@ -9,6 +9,7 @@ import NewsHome from 'components/Client/NewsHome'
 import NewsData from '../components/Client/News'
 import SectionTitle from 'components/Client/SectionTitle'
 import PinnedSVG from 'components/Icons/Pinned'
+import LoaderSide from '@/components/Client/SideNews/Loader'
 
 export default function Home() {
   const { data, loading } = useFetch('/home?limit=4')
@@ -28,10 +29,8 @@ export default function Home() {
               </div>
               <p className="text-sm font-semibold">ANCLADOS</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
-              {pinnedLoading && null}
-              {pinned && <SideNews data={pinned} />}
-            </div>
+            {pinnedLoading && <LoaderSide limits={4} />}
+            {pinned && <SideNews data={pinned} />}
           </div>
         </section>
         <section>

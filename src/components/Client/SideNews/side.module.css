@@ -1,38 +1,16 @@
-.linkNews{
-  padding: 4px 4px;
-  background-color: rgb(230, 230, 230);
-  border: 2px solid transparent;
-  transition: transform .2s linear;
-  border: 1px solid transparent;
-}
-.linkNews:hover{
-  border: 1px solid var(--color-primary);
-}
-.figureImage{
-  display: block;
-  width: 100%;
-  color: #fff;
-}
-.imageOpacity{
-  background: linear-gradient(0deg,#000000de 20%,#00000000 75%);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}.card{
+.card{
   border: 1px solid var(--skeleton-primary);
   border-radius: 8px;
-  padding: 8px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: 40% 55%;
+  gap: 10px;
 }
 .imageBox{
   position: relative;
   border-radius: 5px;
   aspect-ratio: 16 / 9;
   background-color: var(--skeleton-primary);
-  margin-bottom: 10px;
   overflow: hidden;
 }
 .titleBox{
@@ -43,6 +21,10 @@
   width: 100%;
   background-color: var(--skeleton-primary);
   overflow: hidden;
+}
+.titleBox:nth-child(2){
+  width: 80%;
+  height: 12px;
 }
 .contentChilds{
   position: relative;

@@ -70,7 +70,7 @@ export default function K({ data, id, pin }) {
               </div>
               <p className="text-sm font-semibold">ANCLADOS</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 md:gap-1 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-1 md:gap-1 gap-2">
               <SideNews data={pin} />
             </div>
             taboola ads
