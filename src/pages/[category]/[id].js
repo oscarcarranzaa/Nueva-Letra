@@ -94,7 +94,9 @@ export async function getServerSideProps({ params }) {
   const idNews = id.split('_').pop()
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()
-  const pinned = await axios.get('http://localhost:4000/api/v1/pinned?limit=4')
+  const pinned = await axios.get(
+    'https://backend-test.oscarcarranza.cf/api/v1/pinned?limit=4'
+  )
 
   console.log(pinned)
   if (res.status > 400) {
