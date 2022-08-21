@@ -100,7 +100,7 @@ export default function SearchClient() {
           <div
             className={`${
               search.length > 0 && resultSearch.length > 0 ? 'flex' : 'hidden'
-            } w-11/12 mt-3`}
+            } w-11/12 mt-3 flex-col`}
           >
             {resultSearch.length > 0
               ? resultSearch.map((result, index) => {
