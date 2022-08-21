@@ -59,7 +59,7 @@ export default function AdminNavbar() {
             </div>
           </div>
           <div className="w-5/12">
-            <Search />
+            <Search path={'/dash/search?q='} />
           </div>
           <div className="flex justify-end">
             <div className={styles.navbarNick}>

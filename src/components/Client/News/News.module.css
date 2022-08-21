@@ -1,9 +1,9 @@
 .linkNews{
-  padding: 4px 4px;
+  padding: 5px 5px;
   background-color: rgb(230, 230, 230);
-  border: 2px solid transparent;
   transition: transform .2s linear;
   border: 1px solid transparent;
+  border-radius: 5px;
 }
 .linkNews:hover{
   border: 1px solid var(--color-primary);

@@ -18,7 +18,7 @@ export default function Empty() {
                 alt="Todo está bien"
               />
             </div>
-            <h4 className="text-sm font-semibold text-center mt-5">
+            <h4 className="text-center mt-5">
               Pero acá te presentamos las publicaciones mas recientes...
             </h4>
           </div>

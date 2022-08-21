@@ -23,6 +23,7 @@ export default function SideNews({ data }) {
                   decoding="async"
                   width={350}
                   height={200}
+                  layout={'auto'}
                 />
               </div>
               <div className="w-7/12">

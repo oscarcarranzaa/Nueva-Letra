@@ -22,7 +22,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <CallTelephone size={20} />
-                  <p>+(504) 98158066</p>
+                  <p>+(504) 9815-8066</p>
                 </li>
                 <li>
                   <div className={styles.AdsCont}>
@@ -56,7 +56,11 @@ export default function Footer() {
               </small>
               <form>
                 <div className={styles.NewsletterInput}>
-                  <input type="email" required={true} placeholder="Tú correo" />
+                  <input
+                    type="email"
+                    required={true}
+                    placeholder="Aún no funciona jejeje"
+                  />
                   <button type="submit">Suscribirme</button>
                 </div>
               </form>

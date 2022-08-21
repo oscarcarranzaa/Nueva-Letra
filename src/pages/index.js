@@ -10,10 +10,10 @@ import NewsData from '../components/Client/News'
 import SectionTitle from 'components/Client/SectionTitle'
 import PinnedSVG from 'components/Icons/Pinned'
 import LoaderSide from '@/components/Client/SideNews/Loader'
+import axios from 'axios'
 
-export default function Home() {
+export default function Home({ latestPublish }) {
   const { data, loading } = useFetch('/home?limit=4')
-  const { data: dataLast, loadingLast } = useFetch('/client?limit=5')
   const { data: pinned, loading: pinnedLoading } = useFetch('/pinned?limit=4')
   return (
     <>
@@ -35,8 +35,7 @@ export default function Home() {
         </section>
         <section>
           <SectionTitle title="Últimas noticias" />
-          {loadingLast && null}
-          {dataLast && <NewsHome data={dataLast.response.metadata} />}
+          {latestPublish && <NewsHome data={latestPublish.response.metadata} />}
         </section>
         <div>Ads</div>
         <section>
@@ -57,7 +56,7 @@ export default function Home() {
                 return (
                   <div key={key} className="mb-5">
                     <CategoryTitle title={categoryName} href={categoryValue} />
-                    <section className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-8">
+                    <section className="w-full grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-3 mb-10">
                       <NewsData news={keyData} />
                     </section>
                   </div>
@@ -71,4 +70,12 @@ export default function Home() {
       </Layout>
     </>
   )
+}
+export async function getServerSideProps() {
+  const publish = await axios.get('/client?limit=5')
+  return {
+    props: {
+      latestPublish: publish.data
+    }
+  }
 }

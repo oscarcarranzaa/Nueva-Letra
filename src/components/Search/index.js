@@ -4,14 +4,14 @@ import SearchSvg from 'components/Icons/Search'
 import styles from './search.module.css'
 import Arrow from 'components/Icons/Arrow'
 
-export default function Search() {
+export default function Search({ path }) {
   const route = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchFull, setSearchFull] = useState(false)
   const sendSearch = (e) => {
     e.preventDefault()
     if (searchQuery !== '') {
-      route.push(`/dash/search?q=${searchQuery}`)
+      route.push(path + searchQuery)
     }
   }
   const searchFullContent = searchFull ? styles.searchFullContent : ''

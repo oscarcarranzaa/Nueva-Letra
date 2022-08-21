@@ -18,7 +18,7 @@ export default function K({ data, id, pin }) {
   const category = useCategoryID(data.category_code)
   const categoryValue = category[0].value
   const categoryName = category[0].name
-  const url = `https://www.cdmnoticias.com/${categoryValue}/${id}`
+  const url = `https://nuevaletra.oscarcarranza.cf/${categoryValue}/${id}`
   const { data: categoryData, loading: categoryLoad } = useFetch(
     `/client?c=${categoryValue}&limit=4`
   )
@@ -94,9 +94,7 @@ export async function getServerSideProps({ params }) {
   const idNews = id.split('_').pop()
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()
-  const pinned = await axios.get(
-    'https://backend-test.oscarcarranza.cf/api/v1/pinned?limit=4'
-  )
+  const pinned = await axios.get('http://localhost:4000/api/v1/pinned?limit=4')
 
   console.log(pinned)
   if (res.status > 400) {

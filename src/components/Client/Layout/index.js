@@ -42,7 +42,7 @@ export default function Layout({
         <meta name="twitter:title" content={title}></meta>
         <meta name="twitter:description" content={description}></meta>
         <meta name="twitter:image:src" content={image}></meta>
-        <link rel="favicon" href="/static/images/NL-logo.svg" />
+        <link rel="icon" type="image/svg" href="/favicon.ico"></link>
       </Head>
       <Navbar />
       <main className="p-3 md:p-5">{children}</main>

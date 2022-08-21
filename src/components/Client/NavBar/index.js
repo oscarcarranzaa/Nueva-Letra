@@ -2,7 +2,6 @@ import FacebookSVG from 'components/Icons/Facebook'
 import InstagramSVG from 'components/Icons/Instagram'
 import TwitterSVG from 'components/Icons/Twitter'
 import YoutubeSVG from 'components/Icons/Youtube'
-import Search from 'components/Search'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -13,6 +12,7 @@ import TimeGet from './getTime'
 import { useRouter } from 'next/router'
 import BellSVG from 'components/Icons/Bell'
 import axios from 'axios'
+import SearchClient from '../Search'
 
 export default function Navbar() {
   const { query, pathname } = useRouter()
@@ -20,6 +20,12 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false)
   const [weather, setWeather] = useState(false)
   const [weatherLoading, setWeatherLoading] = useState(true)
+  useEffect(() => {
+    const body = document.body
+    openMenu
+      ? body.classList.add('movilNoScroll')
+      : body.classList.remove('movilNoScroll')
+  }, [openMenu])
 
   useEffect(() => {
     setWeatherLoading(true)
@@ -32,7 +38,6 @@ export default function Navbar() {
         setWeatherLoading(false)
       })
   }, [])
-  console.log(weather)
   const dateTime = useFormatDate('getObjectLocalTime')
   const categories = Categories()
   const menuToggle = openMenu ? styles.menuOpen : styles.menuClose
@@ -69,7 +74,7 @@ export default function Navbar() {
             <Link href={'/'}>
               <a>
                 <Image
-                  src={'/static/images/logo.png'}
+                  src={'/logo.svg'}
                   width={90}
                   height={60}
                   layout="intrinsic"
@@ -78,14 +83,14 @@ export default function Navbar() {
               </a>
             </Link>
           </div>
-          <div className="w-5/12">
-            <Search />
+          <div className="w-full mr-4 flex justify-end md:block md:mr-0 md:w-6/12">
+            <SearchClient />
           </div>
-          <div className="flex">
-            <div className="mr-3 md:mr-0">
+          <div className="flex items-center">
+            <div className="mr-6 md:mr-0">
               <BellSVG size={32} fill="#000" />
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden flex">
               <button type="button" onClick={() => setOpenMenu(!openMenu)}>
                 <div
                   className={`${styles.buttonBar} ${

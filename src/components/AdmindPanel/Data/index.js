@@ -10,7 +10,6 @@ import WarnSVG from 'components/Icons/Warn'
 
 export default function Data({ dataNews, act }) {
   const data = dataNews
-  console.log(data.images)
   const [pinned, setPinned] = useState(dataNews.pinned)
   const [sensitive, setSensitive] = useState(dataNews.sensitive)
   const [config, setConfig] = useState(false)
