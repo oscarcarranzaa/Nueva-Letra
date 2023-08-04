@@ -92,13 +92,10 @@ export async function getServerSideProps({ params }) {
   const { id } = params
   const SERVER_URL = process.env.BACKEND_API
   const idNews = id.split('_').pop()
+
   const res = await fetch(`${SERVER_URL}/api/v1/news/${idNews}`)
   const resData = await res.json()
-  const pinned = await axios.get(
-    'https://backend-test.oscarcarranza.cf/api/v1/pinned?limit=4'
-  )
-
-  console.log(pinned)
+  const pinned = await axios.get(`${SERVER_URL}/api/v1/pinned?limit=4`)
   if (res.status > 400) {
     return {
       redirect: {
